@@ -12,11 +12,13 @@ class AnimeRepository : AnimeContract {
     private var dataSource: AnimeDataSource = AnimeDataSource()
 
     private object Holder {
-        val INSTANCE = AnimeRepository()
+        val instance = AnimeRepository()
     }
 
     companion object {
-        val instance: AnimeRepository by lazy { Holder.INSTANCE }
+        fun get(): AnimeRepository {
+            return Holder.instance
+        }
     }
 
     override fun loadAnimeCalendar(): Observable<ResponseBody> {

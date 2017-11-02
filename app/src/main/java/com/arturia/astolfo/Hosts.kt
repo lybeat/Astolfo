@@ -7,6 +7,6 @@ package com.arturia.astolfo
 class Hosts {
 
     companion object {
-        val anime = "http://bangumi.tv/anime/browser"
+        val bangumi = "http://bangumi.tv"
     }
 }

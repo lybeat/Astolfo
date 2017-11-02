@@ -12,14 +12,14 @@ import android.view.ViewGroup
  */
 abstract class BaseFragment : Fragment() {
 
-    protected abstract fun getView(inflater: LayoutInflater?, container: ViewGroup?, attachToRoot: Boolean): View
+    protected abstract fun getView(inflater: LayoutInflater?, container: ViewGroup?, attachToRoot: Boolean): View?
 
     protected abstract fun initData()
 
     protected abstract fun initView()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = getView(inflater, container, false)
+        val view: View? = getView(inflater, container, false)
 
         initData()
         initView()

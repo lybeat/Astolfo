@@ -12,11 +12,11 @@ import java.io.File
  */
 open class CacheHttpClient : BaseOkHttpClient() {
 
-    private val CACHE_SIZE: Long = 1024 * 1024 * 10  // 10M
+    private val cacheSize: Long = 1024 * 1024 * 10  // 10M
 
     override fun customize(builder: OkHttpClient.Builder): OkHttpClient.Builder {
-        val cacheFile = File(AstolfoApplication.getApplication()?.cacheDir, "AstolfoCache")
-        val cache = Cache(cacheFile, CACHE_SIZE)
+        val cacheFile = File(AstolfoApplication.application.cacheDir, "AstolfoCache")
+        val cache = Cache(cacheFile, cacheSize)
         builder.cache(cache)
 
         return builder

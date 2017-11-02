@@ -18,7 +18,7 @@ interface CalendarContract {
 
         fun handleError(error: Throwable)
 
-        fun onCalendarLoaded(calendar: Calendar?)
+        fun onCalendarLoaded(calendar: List<Calendar>?)
     }
 
     interface Presenter : BasePresenter {

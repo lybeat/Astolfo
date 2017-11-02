@@ -13,8 +13,7 @@ class DefaultHttpClient : CacheHttpClient() {
     }
 
     override fun customize(builder: OkHttpClient.Builder): OkHttpClient.Builder {
-        var builder = builder
-        builder = super.customize(builder)
+        val newBuilder = super.customize(builder)
 
         builder.addInterceptor { chain ->
             val original = chain.request()
@@ -26,6 +25,6 @@ class DefaultHttpClient : CacheHttpClient() {
             chain.proceed(request)
         }
 
-        return super.customize(builder)
+        return super.customize(newBuilder)
     }
 }

@@ -11,12 +11,12 @@ import rx.Observable
  */
 interface AnimeService {
 
-    @GET()
+    @GET("/calendar")
     fun loadAnimeCalendar(): Observable<ResponseBody>
 
-    @GET()
+    @GET("/anime/tag")
     fun loadAnimeTag(): Observable<ResponseBody>
 
-    @GET()
+    @GET("/anime/browser")
     fun loadAnimeBrowser( @Query("sort") sort: String): Observable<ResponseBody>
 }

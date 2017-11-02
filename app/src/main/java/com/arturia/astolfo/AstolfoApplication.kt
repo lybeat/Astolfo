@@ -8,8 +8,6 @@ import android.app.Application
  */
 class AstolfoApplication : Application() {
 
-    private var application: AstolfoApplication? = null
-
     override fun onCreate() {
         super.onCreate()
 
@@ -18,8 +16,6 @@ class AstolfoApplication : Application() {
 
     companion object {
 
-        fun getApplication(): AstolfoApplication? {
-            return AstolfoApplication.getApplication()
-        }
+        lateinit var application: AstolfoApplication
     }
 }

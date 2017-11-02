@@ -13,7 +13,7 @@ import rx.Observable
 class AnimeDataSource : AnimeContract {
 
     private var service: AnimeService = DefaultRetrofit()
-            .create(Hosts.anime)
+            .create(Hosts.bangumi)
             .create(AnimeService::class.java)
 
     override fun loadAnimeCalendar(): Observable<ResponseBody> {

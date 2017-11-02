@@ -1,6 +1,10 @@
 package com.arturia.astolfo
 
+import android.support.v4.app.Fragment
 import com.arturia.astolfo.ui.base.BaseActivity
+import com.arturia.astolfo.ui.base.TabAdapter
+import com.arturia.astolfo.ui.calendar.CalendarPagerFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Author: Arturia
@@ -13,10 +17,16 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val fragments = mutableListOf<Fragment>()
+        fragments.add(CalendarPagerFragment())
+//        fragments.add(CalendarPagerFragment())
+        val titles = mutableListOf<String>()
+        titles.add("日历")
+//        titles.add("排行")
+        view_pager.adapter = TabAdapter(supportFragmentManager, fragments, titles)
     }
 }
