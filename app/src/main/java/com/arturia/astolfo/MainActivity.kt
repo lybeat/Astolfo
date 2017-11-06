@@ -1,5 +1,6 @@
 package com.arturia.astolfo
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.arturia.astolfo.ui.base.BaseActivity
 import com.arturia.astolfo.ui.base.TabAdapter
@@ -12,15 +13,12 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : BaseActivity() {
 
-    override fun setContentView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
 
-    override fun initData() {
+        setSupportActionBar(toolbar)
 
-    }
-
-    override fun initView() {
         val fragments = mutableListOf<Fragment>()
         fragments.add(CalendarPagerFragment())
 //        fragments.add(CalendarPagerFragment())

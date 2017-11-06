@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
@@ -53,6 +54,10 @@ dependencies {
 
     // BaseRecyclerViewAdapterHelper
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
+    // Glide
+    compile 'com.github.bumptech.glide:glide:4.3.0'
+    kapt 'com.github.bumptech.glide:compiler:4.3.0'
 }
 repositories {
     mavenCentral()

@@ -1,11 +1,45 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AstolfoTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Astolfo.Theme" parent="AstolfoTheme" />
+
+    <style name="Astolfo.Theme.Widget" />
+
+    <style name="Astolfo.Theme.Widget.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:colorBackground">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+    <style name="OverflowMenu" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/bg_content</item>
+        <item name="android:textColorPrimary">@color/color_content</item>
+    </style>
+
+    <style name="Astolfo.Theme.TextAppearance" />
+
+    <style name="Astolfo.Theme.TextAppearance.Toolbar" />
+
+    <style name="Astolfo.Theme.TextAppearance.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/color_content</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="Astolfo.Theme.TextAppearance.Toolbar.Title.White" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="Astolfo.Theme.TextAppearance.Toolbar.Subtitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textColor">@color/color_secondary3</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

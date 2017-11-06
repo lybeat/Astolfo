@@ -50,17 +50,21 @@ class CalendarPresenter : CalendarContract.Presenter {
         val document: Document = Jsoup.parse(body?.string())
         val coverLists: Elements = document.getElementsByClass("coverList")
 
-        Log.i("CalendarPresenter", "@@@coverList size: " + coverLists.size)
+        val week = arrayOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
 
-        for (coverList in coverLists) {
+        for ((index, coverList) in coverLists.withIndex()) {
             val liList: Elements = coverList.getElementsByTag("li")
             for (li in liList) {
+                val style = li.attr("style")
+                val temp = style.split("'")
+                val cover = temp[1]
                 val a = li.getElementsByTag("a")
                 val name: String = a.text()
                 val href: String = a.attr("href")
+                Log.i("CalendarPresenter", "@@@cover: " + cover)
                 Log.i("CalendarPresenter", "@@@name: " + name)
                 Log.i("CalendarPresenter", "@@@href: " + href)
-                val calendar = Calendar("Sun", "", name, href)
+                val calendar = Calendar(week[index], cover, name, href)
                 calendars.add(calendar)
             }
         }

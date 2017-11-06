@@ -1,12 +1,14 @@
 package com.arturia.astolfo.ui.calendar
 
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Calendar
 import com.arturia.astolfo.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_calendar.*
 
 /**
  * Author: Arturia
@@ -24,15 +26,13 @@ class CalendarFragment : BaseFragment() {
         }
     }
 
-    override fun getView(inflater: LayoutInflater?, container: ViewGroup?, attachToRoot: Boolean): View? {
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_calendar, container, false)
     }
 
-    override fun initData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        recycler_view.layoutManager = GridLayoutManager(activity, 3)
+        recycler_view.adapter = CalendarAdapter(activity, arguments.getParcelableArrayList("calendarList"))
     }
 }
