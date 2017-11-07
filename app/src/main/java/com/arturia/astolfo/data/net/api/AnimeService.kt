@@ -18,5 +18,5 @@ interface AnimeService {
     fun loadAnimeTag(): Observable<ResponseBody>
 
     @GET("/anime/browser")
-    fun loadAnimeBrowser( @Query("sort") sort: String): Observable<ResponseBody>
+    fun loadAnimeBrowser(@Query("sort") sort: String, @Query("page") page: String): Observable<ResponseBody>
 }

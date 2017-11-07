@@ -13,5 +13,5 @@ interface AnimeContract {
 
     fun loadAnimeTag(): Observable<ResponseBody>
 
-    fun loadAnimeBrowser(sort: String): Observable<ResponseBody>
+    fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody>
 }

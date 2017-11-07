@@ -6,9 +6,7 @@ package com.arturia.astolfo.data.model
  */
 data class Anime(var cover: String,
                  var name: String,
-                 var rank: String,
+                 var href: String,
                  var info: String,
                  var star: String,
-                 var tip: String) {
-
-}
+                 var tip: String)

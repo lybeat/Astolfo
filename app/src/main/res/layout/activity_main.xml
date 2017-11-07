@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/colorAccent"
+        android:background="@color/color_accent"
         app:theme="@style/Astolfo.Theme.Widget.Toolbar" />
 
     <android.support.v4.view.ViewPager
@@ -24,41 +24,78 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/layout_calendar"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/iv_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ic_calendar" />
 
             <TextView
+                android:id="@+id/tv_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="日历" />
+                android:layout_marginTop="2dp"
+                android:textColor="@color/color_secondary2"
+                android:textSize="10sp"
+                android:text="每日放送" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_browser"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/iv_browser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ic_tv" />
 
             <TextView
+                android:id="@+id/tv_browser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="排行" />
+                android:textColor="@color/color_secondary2"
+                android:layout_marginTop="2dp"
+                android:textSize="10sp"
+                android:text="排行榜" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_tag"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_tag" />
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/color_secondary2"
+                android:textSize="10sp"
+                android:text="动画标签" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

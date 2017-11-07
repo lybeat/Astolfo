@@ -29,7 +29,7 @@ class AnimeRepository : AnimeContract {
         return dataSource.loadAnimeTag()
     }
 
-    override fun loadAnimeBrowser(sort: String): Observable<ResponseBody> {
-        return dataSource.loadAnimeBrowser(sort)
+    override fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody> {
+        return dataSource.loadAnimeBrowser(sort, page)
     }
 }

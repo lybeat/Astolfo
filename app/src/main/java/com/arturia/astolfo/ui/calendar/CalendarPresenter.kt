@@ -1,6 +1,5 @@
 package com.arturia.astolfo.ui.calendar
 
-import android.util.Log
 import com.arturia.astolfo.data.model.Calendar
 import com.arturia.astolfo.data.source.AnimeRepository
 import okhttp3.ResponseBody
@@ -15,16 +14,12 @@ import rx.subscriptions.CompositeSubscription
  * Author: Arturia
  * Date: 2017/10/31
  */
-class CalendarPresenter : CalendarContract.Presenter {
+class CalendarPresenter(private var view: CalendarContract.View) : CalendarContract.Presenter {
 
-    private var view: CalendarContract.View
-    private var repository: AnimeRepository
-    private var compositeSubscription: CompositeSubscription
+    private var repository: AnimeRepository = AnimeRepository.get()
+    private var compositeSubscription: CompositeSubscription = CompositeSubscription()
 
-    constructor(view: CalendarContract.View) {
-        this.view = view
-        this.repository = AnimeRepository.get()
-        this.compositeSubscription = CompositeSubscription()
+    init {
         this.view.setPresenter(this)
     }
 
@@ -61,9 +56,6 @@ class CalendarPresenter : CalendarContract.Presenter {
                 val a = li.getElementsByTag("a")
                 val name: String = a.text()
                 val href: String = a.attr("href")
-                Log.i("CalendarPresenter", "@@@cover: " + cover)
-                Log.i("CalendarPresenter", "@@@name: " + name)
-                Log.i("CalendarPresenter", "@@@href: " + href)
                 val calendar = Calendar(week[index], cover, name, href)
                 calendars.add(calendar)
             }

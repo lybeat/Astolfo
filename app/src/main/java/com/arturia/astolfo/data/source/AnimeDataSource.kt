@@ -24,7 +24,7 @@ class AnimeDataSource : AnimeContract {
         return service.loadAnimeTag()
     }
 
-    override fun loadAnimeBrowser(sort: String): Observable<ResponseBody> {
-        return service.loadAnimeBrowser(sort)
+    override fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody> {
+        return service.loadAnimeBrowser(sort, page)
     }
 }
