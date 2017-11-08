@@ -27,4 +27,8 @@ class AnimeDataSource : AnimeContract {
     override fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody> {
         return service.loadAnimeBrowser(sort, page)
     }
+
+    override fun loadSubject(number: String): Observable<ResponseBody> {
+        return service.loadSubject("subject", number)
+    }
 }

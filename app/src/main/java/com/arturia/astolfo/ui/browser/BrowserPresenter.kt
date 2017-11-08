@@ -48,12 +48,16 @@ class BrowserPresenter(private var view: BrowserContract.View) : BrowserContract
         for (li in liList) {
             val div = li.getElementsByTag("div")
             val href = li.getElementsByTag("a").attr("href")
-            val cover = li.getElementsByTag("img").attr("src")
+            var cover = li.getElementsByTag("img").attr("src")
             val name = div.first().getElementsByTag("a").text()
             val info = div.first().getElementsByClass("info tip").text()
             val rateInfo = div.first().getElementsByClass("rateInfo")
             val star = rateInfo.first().getElementsByClass("fade").first().text()
             val tip = rateInfo.first().getElementsByClass("tip_j").first().text()
+
+            if (cover.contains("/s/")) {
+                cover = cover.replace("/s/", "/c/")
+            }
 
             val anime = Anime(cover, name, href, info, star, tip)
             animeList.add(anime)

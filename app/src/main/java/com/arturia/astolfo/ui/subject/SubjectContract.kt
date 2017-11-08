@@ -1,6 +1,6 @@
-package com.arturia.astolfo.ui.anime
+package com.arturia.astolfo.ui.subject
 
-import com.arturia.astolfo.data.model.Anime
+import com.arturia.astolfo.data.model.Subject
 import com.arturia.astolfo.ui.mvp.BasePresenter
 import com.arturia.astolfo.ui.mvp.BaseView
 
@@ -8,7 +8,7 @@ import com.arturia.astolfo.ui.mvp.BaseView
  * Author: Arturia
  * Date: 2017/11/7
  */
-interface AnimeContract {
+interface SubjectContract {
 
     interface View : BaseView<Presenter> {
 
@@ -18,11 +18,11 @@ interface AnimeContract {
 
         fun handleError(error: Throwable)
 
-        fun onAnimeLoaded(Anime: Anime)
+        fun onSubjectLoaded(subject: Subject)
     }
 
     interface Presenter : BasePresenter {
 
-        fun loadAnime(subject: String)
+        fun loadSubject(number: String)
     }
 }

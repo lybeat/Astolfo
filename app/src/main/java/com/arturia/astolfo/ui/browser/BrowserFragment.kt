@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Anime
-import com.arturia.astolfo.ui.anime.AnimeActivity
 import com.arturia.astolfo.ui.base.BaseFragment
+import com.arturia.astolfo.ui.subject.SubjectActivity
 import kotlinx.android.synthetic.main.fragment_calendar.*
 
 /**
@@ -23,7 +23,7 @@ class BrowserFragment : BaseFragment(), BrowserContract.View {
     private var page = 1
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_calendar, container, false)
+        return inflater?.inflate(R.layout.fragment_browser, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class BrowserFragment : BaseFragment(), BrowserContract.View {
         }, recycler_view)
         adapter.setOnItemClickListener { adapter, _, position ->
             val anime: Anime = adapter.data[position] as Anime
-            AnimeActivity.launch(activity, anime.href)
+            SubjectActivity.launch(activity, anime.href)
         }
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.adapter = adapter

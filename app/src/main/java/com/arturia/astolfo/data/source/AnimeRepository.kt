@@ -12,15 +12,15 @@ class AnimeRepository : AnimeContract {
     private var dataSource: AnimeDataSource = AnimeDataSource()
 
     private object Holder {
+
         val instance = AnimeRepository()
     }
-
     companion object {
+
         fun get(): AnimeRepository {
             return Holder.instance
         }
     }
-
     override fun loadAnimeCalendar(): Observable<ResponseBody> {
         return dataSource.loadAnimeCalendar()
     }
@@ -31,5 +31,9 @@ class AnimeRepository : AnimeContract {
 
     override fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody> {
         return dataSource.loadAnimeBrowser(sort, page)
+    }
+
+    override fun loadSubject(number: String): Observable<ResponseBody> {
+        return dataSource.loadSubject(number)
     }
 }

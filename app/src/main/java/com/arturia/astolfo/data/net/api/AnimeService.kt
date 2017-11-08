@@ -2,6 +2,7 @@ package com.arturia.astolfo.data.net.api
 
 import okhttp3.ResponseBody
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import rx.Observable
 
@@ -19,4 +20,7 @@ interface AnimeService {
 
     @GET("/anime/browser")
     fun loadAnimeBrowser(@Query("sort") sort: String, @Query("page") page: String): Observable<ResponseBody>
+
+    @GET("{subject}/{number}")
+    fun loadSubject(@Path("subject") subject: String, @Path("number") number: String): Observable<ResponseBody>
 }

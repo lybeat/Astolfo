@@ -42,20 +42,24 @@ class CalendarPresenter(private var view: CalendarContract.View) : CalendarContr
     private fun parseHtml(body: ResponseBody?): List<Calendar> {
         val calendars = mutableListOf<Calendar>()
 
-        val document: Document = Jsoup.parse(body?.string())
-        val coverLists: Elements = document.getElementsByClass("coverList")
-
         val week = arrayOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
 
+        val document: Document = Jsoup.parse(body?.string())
+        val coverLists: Elements = document.getElementsByClass("coverList")
         for ((index, coverList) in coverLists.withIndex()) {
             val liList: Elements = coverList.getElementsByTag("li")
             for (li in liList) {
                 val style = li.attr("style")
                 val temp = style.split("'")
-                val cover = temp[1]
+                var cover = temp[1]
                 val a = li.getElementsByTag("a")
-                val name: String = a.text()
-                val href: String = a.attr("href")
+                val name: String = if (a.first().text().isEmpty()) a.last().text() else a.first().text()
+                val href: String = a.first().attr("href")
+
+                if (cover.contains("/c/")) {
+                    cover = cover.replace("/c/", "/l/")
+                }
+
                 val calendar = Calendar(week[index], cover, name, href)
                 calendars.add(calendar)
             }
