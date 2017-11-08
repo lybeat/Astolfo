@@ -23,6 +23,5 @@ class CharacterAdapter(private var context: Context, characters: List<Character>
                 .apply(RequestOptions())
                 .into(ivAvatar)
         helper?.setText(R.id.tv_name, item?.name)
-        helper?.setText(R.id.tv_cv, "CV: " + item?.cv)
     }
 }

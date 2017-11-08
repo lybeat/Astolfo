@@ -14,7 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/color_accent"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:theme="@style/Astolfo.Theme.Widget.Toolbar" />
     </android.support.design.widget.AppBarLayout>
 

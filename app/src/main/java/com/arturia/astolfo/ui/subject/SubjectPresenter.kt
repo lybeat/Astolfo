@@ -67,7 +67,7 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
             Log.i("SubjectPresenter", "job: " + job)
             Log.i("SubjectPresenter", "cv: " + cv)
 
-            avatar = avatar.replace("/s/", "/l/")
+            avatar = avatar.replace("/s/", "/m/")
 
             val character = Character(avatar, cName, href, job, cv)
             characters.add(character)
