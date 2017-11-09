@@ -7,7 +7,7 @@ import android.os.Parcelable
  * Author: Arturia
  * Date: 2017/10/31
  */
-data class Calendar(var date: String, var cover: String, var name: String, var url: String) : Parcelable {
+data class Calendar(var date: String, var cover: String, var name: String, var href: String) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -19,7 +19,7 @@ data class Calendar(var date: String, var cover: String, var name: String, var u
         parcel.writeString(date)
         parcel.writeString(cover)
         parcel.writeString(name)
-        parcel.writeString(url)
+        parcel.writeString(href)
     }
 
     override fun describeContents(): Int {

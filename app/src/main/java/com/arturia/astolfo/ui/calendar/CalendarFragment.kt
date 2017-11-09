@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Calendar
 import com.arturia.astolfo.ui.base.BaseFragment
+import com.arturia.astolfo.ui.subject.SubjectActivity
 import kotlinx.android.synthetic.main.fragment_calendar.*
 
 /**
@@ -33,6 +34,12 @@ class CalendarFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         recycler_view.layoutManager = GridLayoutManager(activity, 3)
-        recycler_view.adapter = CalendarAdapter(activity, arguments.getParcelableArrayList("calendarList"))
+        val calendarAdapter = CalendarAdapter(activity, arguments.getParcelableArrayList("calendarList"))
+        calendarAdapter.setOnItemClickListener { adapter, _, position ->
+            val calendar: Calendar = adapter.data[position] as Calendar
+            SubjectActivity.launch(activity, calendar.href)
+        }
+        recycler_view.adapter = calendarAdapter
+
     }
 }

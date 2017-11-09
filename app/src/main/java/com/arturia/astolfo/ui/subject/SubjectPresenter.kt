@@ -52,91 +52,101 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
 
         val characters = mutableListOf<Character>()
         val characterContainer = document.getElementsByClass("user")
-        for (item in characterContainer) {
-            val a = item.getElementsByTag("a")
-            val href = a.first().attr("href")
-            val cName = a.first().text()
-            val userImage = item.getElementsByClass("userImage")
-            var avatar = userImage.first().getElementsByTag("img").first().attr("src")
-            val job = item.getElementsByClass("badge_job").text()
-            val cv = item.getElementsByTag("a").last().text()
+        if (characterContainer.size > 0) {
+            for (item in characterContainer) {
+                val a = item.getElementsByTag("a")
+                val href = a.first().attr("href")
+                val cName = a.first().text()
+                val userImage = item.getElementsByClass("userImage")
+                var avatar = userImage.first().getElementsByTag("img").first().attr("src")
+                val job = item.getElementsByClass("badge_job").text()
+                val cv = item.getElementsByTag("a").last().text()
 
-            Log.i("SubjectPresenter", "href: " + href)
-            Log.i("SubjectPresenter", "cName: " + cName)
-            Log.i("SubjectPresenter", "avatar: " + avatar)
-            Log.i("SubjectPresenter", "job: " + job)
-            Log.i("SubjectPresenter", "cv: " + cv)
+                Log.i("SubjectPresenter", "href: " + href)
+                Log.i("SubjectPresenter", "cName: " + cName)
+                Log.i("SubjectPresenter", "avatar: " + avatar)
+                Log.i("SubjectPresenter", "job: " + job)
+                Log.i("SubjectPresenter", "cv: " + cv)
 
-            avatar = avatar.replace("/s/", "/m/")
+                avatar = avatar.replace("/s/", "/m/")
 
-            val character = Character(avatar, cName, href, job, cv)
-            characters.add(character)
+                val character = Character(avatar, cName, href, job, cv)
+                characters.add(character)
+            }
         }
 
         val entries = mutableListOf<Entry>()
         val entryContainer = document.getElementsByClass("browserCoverMedium clearit")
-        val entryList = entryContainer.first().getElementsByTag("li")
-        for (item in entryList) {
-            val category = item.getElementsByTag("span").first().text()
-            val a = item.getElementsByTag("a")
-            val href = a.first().attr("href")
-            var eCover = a.first().getElementsByTag("span").first().attr("style")
-            val eName = a.last().text()
+        if (entryContainer.size > 0) {
+            val entryList = entryContainer.first().getElementsByTag("li")
+            for (item in entryList) {
+                val category = item.getElementsByTag("span").first().text()
+                val a = item.getElementsByTag("a")
+                val href = a.first().attr("href")
+                var eCover = a.first().getElementsByTag("span").first().attr("style")
+                val eName = a.last().text()
 
-            eCover = eCover.split("'")[1]
-            eCover = eCover.replace("/m/", "/l/")
+                eCover = eCover.split("'")[1]
+                eCover = eCover.replace("/m/", "/l/")
 
-            Log.i("SubjectPresenter", "category: " + category)
-            Log.i("SubjectPresenter", "href: " + href)
-            Log.i("SubjectPresenter", "eCover: " + eCover)
-            Log.i("SubjectPresenter", "eName: " + eName)
+                Log.i("SubjectPresenter", "category: " + category)
+                Log.i("SubjectPresenter", "href: " + href)
+                Log.i("SubjectPresenter", "eCover: " + eCover)
+                Log.i("SubjectPresenter", "eName: " + eName)
 
-            val entry = Entry(eCover, eName, href, category)
-            entries.add(entry)
+                val entry = Entry(eCover, eName, href, category)
+                entries.add(entry)
+            }
         }
 
         val likes = mutableListOf<Entry>()
         val likeContainer = document.getElementsByClass("coversSmall")
-        val likeList = likeContainer.first().getElementsByTag("li")
-        for (item in likeList) {
-            val a = item.getElementsByTag("a")
-            val href = a.first().attr("href")
-            val lName = a.first().attr("title")
-            var lCover = item.getElementsByTag("img").first().attr("src")
+        if (likeContainer.size > 0) {
+            val likeList = likeContainer.first().getElementsByTag("li")
+            for (item in likeList) {
+                val a = item.getElementsByTag("a")
+                val href = a.first().attr("href")
+                val lName = a.first().attr("title")
+                var lCover = item.getElementsByTag("img").first().attr("src")
 
-            Log.i("SubjectPresenter", "href: " + href)
-            Log.i("SubjectPresenter", "lName: " + lName)
-            Log.i("SubjectPresenter", "lCover: " + lCover)
+                Log.i("SubjectPresenter", "href: " + href)
+                Log.i("SubjectPresenter", "lName: " + lName)
+                Log.i("SubjectPresenter", "lCover: " + lCover)
 
-            lCover = lCover.replace("/m/", "/l/")
+                lCover = lCover.replace("/m/", "/l/")
 
-            val like = Entry(lCover, lName, href, "")
-            likes.add(like)
+                val like = Entry(lCover, lName, href, "")
+                likes.add(like)
+            }
         }
 
         val comments = mutableListOf<Comment>()
         val commentContainer = document.getElementById("entry_list")
-        val commentList = commentContainer.getElementsByClass("item clearit")
-        for (item in commentList) {
-            val a = item.getElementsByTag("a")
-            val href = a.first().attr("href")
-            val title = a.first().attr("title")
-            val timeDiv = item.getElementsByClass("time")
-            val timeA = timeDiv.first().getElementsByTag("a")
-            val userHref = timeA.first().attr("href")
-            val userName = timeA.first().text()
-            val time = timeDiv.first().getElementsByTag("small").first().text()
-            val content = item.getElementsByClass("content").first().text()
+        if (commentContainer != null) {
+            val commentList = commentContainer.getElementsByClass("item clearit")
+            if (commentList.size > 0) {
+                for (item in commentList) {
+                    val a = item.getElementsByTag("a")
+                    val href = a.first().attr("href")
+                    val title = a.first().attr("title")
+                    val timeDiv = item.getElementsByClass("time")
+                    val timeA = timeDiv.first().getElementsByTag("a")
+                    val userHref = timeA.first().attr("href")
+                    val userName = timeA.first().text()
+                    val time = timeDiv.first().getElementsByTag("small").first().text()
+                    val content = item.getElementsByClass("content").first().text()
 
-            Log.i("SubjectPresenter", "href: " + href)
-            Log.i("SubjectPresenter", "title: " + title)
-            Log.i("SubjectPresenter", "userHref: " + userHref)
-            Log.i("SubjectPresenter", "userName: " + userName)
-            Log.i("SubjectPresenter", "time: " + time)
-            Log.i("SubjectPresenter", "content: " + content)
+                    Log.i("SubjectPresenter", "href: " + href)
+                    Log.i("SubjectPresenter", "title: " + title)
+                    Log.i("SubjectPresenter", "userHref: " + userHref)
+                    Log.i("SubjectPresenter", "userName: " + userName)
+                    Log.i("SubjectPresenter", "time: " + time)
+                    Log.i("SubjectPresenter", "content: " + content)
 
-            val comment = Comment(href, title, content, time, User(userName, userHref))
-            comments.add(comment)
+                    val comment = Comment(href, title, content, time, User(userName, userHref))
+                    comments.add(comment)
+                }
+            }
         }
 
         Log.i("SubjectPresenter", "cover: " + cover)
