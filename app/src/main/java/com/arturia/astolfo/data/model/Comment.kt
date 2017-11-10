@@ -6,4 +6,5 @@ package com.arturia.astolfo.data.model
  */
 class Comment(var content: String,
               val time: String,
+              val star: String,
               var user: User)

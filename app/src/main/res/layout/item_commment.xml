@@ -20,12 +20,21 @@
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:textColor="@color/color_secondary1"
             android:textSize="@dimen/astolfo.text.normal" />
 
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="@style/Astolfo.Theme.Widget.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.1" />
     </LinearLayout>
 
     <TextView

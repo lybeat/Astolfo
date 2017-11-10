@@ -2,6 +2,7 @@ package com.arturia.astolfo.ui.subject
 
 import android.content.Context
 import android.widget.ImageView
+import android.widget.RatingBar
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Comment
 import com.arturia.astolfo.util.UnitUtil
@@ -27,12 +28,14 @@ class CommentAdapter(private var context: Context, comments: List<Comment>)
 
     override fun convert(helper: BaseViewHolder?, item: Comment?) {
         val ivAvatar = helper?.getView<ImageView>(R.id.iv_avatar)
+        val ratingBar = helper?.getView<RatingBar>(R.id.rating_bar)
+        ratingBar?.rating = item?.star?.toFloat()!! / 2
         Glide.with(context)
-                .load("http:" + item?.user?.avatar)
+                .load("http:" + item.user.avatar)
                 .apply(options)
                 .into(ivAvatar)
-        helper?.setText(R.id.tv_name, item?.user?.name)
-        helper?.setText(R.id.tv_content, item?.content)
-        helper?.setText(R.id.tv_time,item?.time)
+        helper?.setText(R.id.tv_name, item.user.name)
+        helper?.setText(R.id.tv_content, item.content)
+        helper?.setText(R.id.tv_time, item.time)
     }
 }

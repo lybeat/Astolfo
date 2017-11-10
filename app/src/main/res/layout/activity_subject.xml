@@ -159,7 +159,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="角色介绍"
-                    android:textSize="@dimen/astolfo.text.medium" />
+                    android:textColor="@color/color_content"
+                    android:textSize="@dimen/astolfo.text.normal" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_character"
@@ -183,6 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="相关条目"
+                    android:textColor="@color/color_content"
                     android:textSize="@dimen/astolfo.text.normal" />
 
                 <android.support.v7.widget.RecyclerView
@@ -207,6 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="猜你喜欢"
+                    android:textColor="@color/color_content"
                     android:textSize="@dimen/astolfo.text.normal" />
 
                 <android.support.v7.widget.RecyclerView
@@ -231,6 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="吐槽箱"
+                    android:textColor="@color/color_content"
                     android:textSize="@dimen/astolfo.text.normal" />
 
                 <android.support.v7.widget.RecyclerView
@@ -256,7 +260,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/color_accent"
-        app:theme="@style/Astolfo.Theme.Widget.Toolbar"
         app:navigationIcon="@drawable/ic_back_embed"
+        app:theme="@style/Astolfo.Theme.Widget.Toolbar"
         app:titleTextAppearance="@style/Astolfo.Theme.TextAppearance.Toolbar.Title" />
 </FrameLayout>

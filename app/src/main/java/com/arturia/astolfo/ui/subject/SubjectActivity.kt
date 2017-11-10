@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.arturia.astolfo.R
+import com.arturia.astolfo.data.model.Entry
 import com.arturia.astolfo.data.model.Subject
 import com.arturia.astolfo.ui.base.BaseActivity
 import com.arturia.astolfo.widget.LittleLayoutManager
@@ -78,12 +79,21 @@ class SubjectActivity : BaseActivity(), SubjectContract.View {
         }
         if (subject.entries.isNotEmpty()) {
             recycler_entry.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            recycler_entry.adapter = EntryAdapter(this, subject.entries)
+            val entryAdapter = EntryAdapter(this, subject.entries)
+            entryAdapter.setOnItemClickListener { adapter, _, position ->
+                val entry: Entry = adapter.data[position] as Entry
+                SubjectActivity.launch(this, entry.href) }
+            recycler_entry.adapter = entryAdapter
             layout_entry.visibility = View.VISIBLE
         }
         if (subject.likes.isNotEmpty()) {
             recycler_like.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            recycler_like.adapter = EntryAdapter(this, subject.likes)
+            val likeAdapter = EntryAdapter(this, subject.likes)
+            likeAdapter.setOnItemClickListener { adapter, _, position ->
+                val like: Entry = adapter.data[position] as Entry
+                SubjectActivity.launch(this, like.href)
+            }
+            recycler_like.adapter = likeAdapter
             layout_like.visibility = View.VISIBLE
         }
         if (subject.comments.isNotEmpty()) {

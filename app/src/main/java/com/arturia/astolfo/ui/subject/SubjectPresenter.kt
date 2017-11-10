@@ -6,6 +6,7 @@ import com.arturia.astolfo.data.source.AnimeRepository
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
@@ -131,6 +132,8 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
                     val userHref = a.first().attr("href")
                     val userName = a.first().text()
                     val time = div.first().getElementsByTag("small").first().text()
+                    val starSpan = div.first().getElementsByTag("span")
+                    val cStar: String = formatStar(starSpan)
                     val content = div.first().getElementsByTag("p").first().text()
 
                     userAvatar = userAvatar.split("'")[1].replace("/s/", "/l/")
@@ -139,9 +142,10 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
                     Log.i("SubjectPresenter", "userHref: " + userHref)
                     Log.i("SubjectPresenter", "userName: " + userName)
                     Log.i("SubjectPresenter", "time: " + formatTime(time))
+                    Log.i("SubjectPresenter", "cStar: " + cStar)
                     Log.i("SubjectPresenter", "content: " + content)
 
-                    val comment = Comment(content, formatTime(time), User(userName, userAvatar, userHref))
+                    val comment = Comment(content, formatTime(time), cStar, User(userName, userAvatar, userHref))
                     comments.add(comment)
                 }
             }
@@ -152,6 +156,21 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
         Log.i("SubjectPresenter", "summary: " + summary)
 
         return Subject(cover, name, summary, characters, entries, likes, comments, star, appraisal, "")
+    }
+
+    private fun formatStar(starSpan: Elements): String {
+        var star: String
+        if (starSpan.size > 0) {
+            star = starSpan.first().attr("class")
+            star = if (star.isNotEmpty() && star.length > 8) {
+                star.substring(6, 8)
+            } else {
+                "0"
+            }
+        } else {
+            star = "0"
+        }
+        return star
     }
 
     private fun formatTime(time: String): String {
