@@ -23,7 +23,6 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
-                    android:background="@color/color_secondary1"
                     android:contentDescription="@null" />
 
                 <LinearLayout
@@ -49,13 +48,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="话数: 24(22+1+1)" />
+                            android:text="话数: 24(22+1+1)"
+                            android:textSize="@dimen/astolfo.text.normal" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="放送开始: 2008年10月2日" />
+                            android:text="放送开始: 2008年10月2日"
+                            android:textSize="@dimen/astolfo.text.normal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -76,7 +77,21 @@
                         <TextView
                             android:id="@+id/tv_appraisal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textSize="@dimen/astolfo.text.small" />
+
+                        <RatingBar
+                            android:id="@+id/rating_bar"
+                            style="@style/Astolfo.Theme.Widget.RatingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:stepSize="0.1"
+                            android:visibility="gone" />
+
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>
@@ -86,74 +101,152 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:ellipsize="end"
                 android:lineSpacingExtra="5dp"
+                android:maxLines="3"
                 android:padding="10dp"
-                android:textColor="@color/color_secondary1" />
+                android:textColor="@color/color_secondary1"
+                android:textSize="@dimen/astolfo.text.normal"
+                android:visibility="gone" />
 
             <LinearLayout
+                android:id="@+id/layout_more_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1px"
+                    android:layout_weight="1"
+                    android:background="@color/divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="更多资料"
+                    android:textColor="@color/color_accent"
+                    android:textSize="@dimen/astolfo.text.normal" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1px"
+                    android:layout_weight="1"
+                    android:background="@color/divider" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_character"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="角色介绍" />
+                    android:text="角色介绍"
+                    android:textSize="@dimen/astolfo.text.medium" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/character_recycler"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_character"
+                    style="@style/Astolfo.Theme.Widget.RecyclerView.Horizontal"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_entry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_entry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="相关条目" />
+                    android:text="相关条目"
+                    android:textSize="@dimen/astolfo.text.normal" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/entry_recycler"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_entry"
+                    style="@style/Astolfo.Theme.Widget.RecyclerView.Horizontal"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_like"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="猜你喜欢" />
+                    android:text="猜你喜欢"
+                    android:textSize="@dimen/astolfo.text.normal" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/like_recycler"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_like"
+                    style="@style/Astolfo.Theme.Widget.RecyclerView.Horizontal"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="吐槽箱"
+                    android:textSize="@dimen/astolfo.text.normal" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="更多吐槽"
+                    android:textColor="@color/color_accent"
+                    android:textSize="@dimen/astolfo.text.normal" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -163,5 +256,6 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/color_accent"
-        app:theme="@style/Astolfo.Theme.Widget.Toolbar" />
+        app:theme="@style/Astolfo.Theme.Widget.Toolbar"
+        app:titleTextAppearance="@style/Astolfo.Theme.TextAppearance.Toolbar.Title" />
 </FrameLayout>

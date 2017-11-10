@@ -20,7 +20,7 @@ class CharacterAdapter(private var context: Context, characters: List<Character>
         val ivAvatar = helper?.getView<ImageView>(R.id.iv_avatar)
         Glide.with(context)
                 .load("http:" + item?.avatar)
-                .apply(RequestOptions())
+                .apply(RequestOptions().placeholder(R.drawable.bg_placeholder).error(R.drawable.bg_placeholder))
                 .into(ivAvatar)
         helper?.setText(R.id.tv_name, item?.name)
     }

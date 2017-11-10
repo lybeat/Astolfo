@@ -19,8 +19,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        setSupportActionBar(toolbar)
-
         val fragments = mutableListOf<Fragment>()
         fragments.add(CalendarPagerFragment())
         fragments.add(BrowserFragment())

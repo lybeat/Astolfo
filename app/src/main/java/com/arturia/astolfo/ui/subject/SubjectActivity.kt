@@ -8,6 +8,7 @@ import android.view.View
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Subject
 import com.arturia.astolfo.ui.base.BaseActivity
+import com.arturia.astolfo.widget.LittleLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_subject.*
@@ -56,21 +57,38 @@ class SubjectActivity : BaseActivity(), SubjectContract.View {
         toolbar.title = subject.name
         Glide.with(this)
                 .load("http:" + subject.cover)
-                .apply(RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
+                .apply(RequestOptions().placeholder(R.drawable.bg_placeholder).error(R.drawable.bg_placeholder))
                 .into(iv_cover)
         tv_star.text = subject.star
-        tv_appraisal.text = subject.appraisal
-        tv_summary.text = subject.summary
-        if (subject.characters.isNotEmpty()) {
-            character_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            character_recycler.adapter = CharacterAdapter(this, subject.characters)
-        } else{
-            character_recycler.visibility = View.GONE
-            tv_character.visibility = View.GONE
+        if (subject.star.isNotEmpty()) {
+            rating_bar.rating = subject.star.toFloat() / 2
+            rating_bar.visibility = View.VISIBLE
         }
-        entry_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        entry_recycler.adapter = EntryAdapter(this, subject.entries)
-        like_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        like_recycler.adapter = EntryAdapter(this, subject.likes)
+        tv_appraisal.text = subject.appraisal
+        if (subject.summary.isNotEmpty()) {
+            tv_summary.text = subject.summary
+            tv_summary.visibility = View.VISIBLE
+            layout_more_info.visibility = View.VISIBLE
+        }
+        if (subject.characters.isNotEmpty()) {
+            recycler_character.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            recycler_character.adapter = CharacterAdapter(this, subject.characters)
+            layout_character.visibility = View.VISIBLE
+        }
+        if (subject.entries.isNotEmpty()) {
+            recycler_entry.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            recycler_entry.adapter = EntryAdapter(this, subject.entries)
+            layout_entry.visibility = View.VISIBLE
+        }
+        if (subject.likes.isNotEmpty()) {
+            recycler_like.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            recycler_like.adapter = EntryAdapter(this, subject.likes)
+            layout_like.visibility = View.VISIBLE
+        }
+        if (subject.comments.isNotEmpty()) {
+            recycler_comment.layoutManager = LittleLayoutManager(this)
+            recycler_comment.adapter = CommentAdapter(this, subject.comments)
+            layout_comment.visibility = View.VISIBLE
+        }
     }
 }

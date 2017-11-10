@@ -11,4 +11,7 @@
     <color name="color_secondary2">#999999</color>
     <color name="color_secondary3">#c7c7c7</color>
     <color name="color_secondary4">#eeeeee</color>
+    <color name="bg_secondary">#ECECEC</color>
+
+    <color name="divider">#1a000000</color>
 </resources>

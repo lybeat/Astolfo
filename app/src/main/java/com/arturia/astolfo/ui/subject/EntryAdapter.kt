@@ -20,7 +20,7 @@ class EntryAdapter(private var context: Context, entries: List<Entry>)
         val ivAvatar = helper?.getView<ImageView>(R.id.iv_cover)
         Glide.with(context)
                 .load("http:" + item?.cover)
-                .apply(RequestOptions())
+                .apply(RequestOptions().placeholder(R.drawable.bg_placeholder).error(R.drawable.bg_placeholder))
                 .into(ivAvatar)
         helper?.setText(R.id.tv_name, item?.name)
     }

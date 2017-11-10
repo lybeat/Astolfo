@@ -16,7 +16,9 @@
         android:id="@+id/tv_name"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:maxLines="2"
-        android:layout_marginTop="10dp" />
+        android:textColor="@color/color_content"
+        android:textSize="@dimen/astolfo.text.normal" />
 
 </LinearLayout>

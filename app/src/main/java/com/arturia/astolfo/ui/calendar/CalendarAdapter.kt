@@ -22,7 +22,7 @@ class CalendarAdapter(private val context: Context, calendarList: List<Calendar>
 
     init {
         screenWidth = ScreenUtil.getScreenWidth(context)
-        options = options.placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher)
+        options = options.placeholder(R.drawable.bg_placeholder).error(R.drawable.bg_placeholder)
     }
 
     override fun convert(helper: BaseViewHolder?, item: Calendar?) {

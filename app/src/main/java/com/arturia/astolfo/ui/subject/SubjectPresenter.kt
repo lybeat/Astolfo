@@ -42,9 +42,8 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
         val document: Document = Jsoup.parse(body?.string())
         val summary = document.getElementById("subject_summary").text()
         val infoBox = document.getElementsByClass("infobox")
-        val coverA = infoBox.first().getElementsByTag("a")
-        val cover = coverA.first().attr("href")
-        val name = coverA.first().attr("title")
+        val cover = infoBox.first().getElementsByTag("a").first().attr("href")
+        val name = document.getElementsByClass("nameSingle").first().getElementsByTag("a").first().text()
         val score = document.getElementsByClass("global_score")
         val span = score.first().getElementsByTag("span")
         val star = span.first().text()
@@ -121,29 +120,28 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
         }
 
         val comments = mutableListOf<Comment>()
-        val commentContainer = document.getElementById("entry_list")
+        val commentContainer = document.getElementById("comment_box")
         if (commentContainer != null) {
             val commentList = commentContainer.getElementsByClass("item clearit")
             if (commentList.size > 0) {
                 for (item in commentList) {
-                    val a = item.getElementsByTag("a")
-                    val href = a.first().attr("href")
-                    val title = a.first().attr("title")
-                    val timeDiv = item.getElementsByClass("time")
-                    val timeA = timeDiv.first().getElementsByTag("a")
-                    val userHref = timeA.first().attr("href")
-                    val userName = timeA.first().text()
-                    val time = timeDiv.first().getElementsByTag("small").first().text()
-                    val content = item.getElementsByClass("content").first().text()
+                    var userAvatar = item.getElementsByTag("a").first().getElementsByTag("span").first().attr("style")
+                    val div = item.getElementsByClass("text")
+                    val a = div.first().getElementsByTag("a")
+                    val userHref = a.first().attr("href")
+                    val userName = a.first().text()
+                    val time = div.first().getElementsByTag("small").first().text()
+                    val content = div.first().getElementsByTag("p").first().text()
 
-                    Log.i("SubjectPresenter", "href: " + href)
-                    Log.i("SubjectPresenter", "title: " + title)
+                    userAvatar = userAvatar.split("'")[1].replace("/s/", "/l/")
+
+                    Log.i("SubjectPresenter", "userAvatar: " + userAvatar)
                     Log.i("SubjectPresenter", "userHref: " + userHref)
                     Log.i("SubjectPresenter", "userName: " + userName)
-                    Log.i("SubjectPresenter", "time: " + time)
+                    Log.i("SubjectPresenter", "time: " + formatTime(time))
                     Log.i("SubjectPresenter", "content: " + content)
 
-                    val comment = Comment(href, title, content, time, User(userName, userHref))
+                    val comment = Comment(content, formatTime(time), User(userName, userAvatar, userHref))
                     comments.add(comment)
                 }
             }
@@ -154,5 +152,15 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
         Log.i("SubjectPresenter", "summary: " + summary)
 
         return Subject(cover, name, summary, characters, entries, likes, comments, star, appraisal, "")
+    }
+
+    private fun formatTime(time: String): String {
+        var newTime = time.split(" ")[1]
+        when {
+            newTime.endsWith("d") -> newTime = newTime.removeSuffix("d") + "天前"
+            newTime.endsWith("h") -> newTime = newTime.removeSuffix("h") + "小时前"
+            newTime.endsWith("m") -> newTime = newTime.removeSuffix("m") + "分钟前"
+        }
+        return newTime
     }
 }
