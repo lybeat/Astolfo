@@ -254,8 +254,9 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
         android:background="@color/color_accent"
         app:theme="@style/Astolfo.Theme.Widget.Toolbar"
+        app:navigationIcon="@drawable/ic_back_embed"
         app:titleTextAppearance="@style/Astolfo.Theme.TextAppearance.Toolbar.Title" />
 </FrameLayout>

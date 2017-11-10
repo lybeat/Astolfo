@@ -34,6 +34,7 @@ class SubjectActivity : BaseActivity(), SubjectContract.View {
         setContentView(R.layout.activity_subject)
 
         setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener({ finish() })
 
         val href = intent.getStringExtra("href")
 
