@@ -14,7 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/astolfo.toolbar.height"
             android:background="@color/color_accent"
-            app:theme="@style/Astolfo.Theme.Widget.Toolbar" />
+            app:navigationIcon="@drawable/ic_back_embed"
+            app:theme="@style/Astolfo.Theme.Widget.Toolbar"
+            app:titleTextAppearance="@style/Astolfo.Theme.TextAppearance.Toolbar.Title" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView

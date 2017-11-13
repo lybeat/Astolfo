@@ -36,6 +36,11 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View {
         CalendarPresenter(this).subscribe()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsubscribe()
+    }
+
     private fun initTitles() {
         titles.add("周日")
         titles.add("周一")

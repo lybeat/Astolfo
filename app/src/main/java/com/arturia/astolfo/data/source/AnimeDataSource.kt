@@ -31,4 +31,12 @@ class AnimeDataSource : AnimeContract {
     override fun loadSubject(number: String): Observable<ResponseBody> {
         return service.loadSubject("subject", number)
     }
+
+    override fun loadCharacter(number: String): Observable<ResponseBody> {
+        return service.loadCharacter("character", number)
+    }
+
+    override fun loadComments(number: String, page: String): Observable<ResponseBody> {
+        return service.loadComments("subject", number, "comments", page)
+    }
 }

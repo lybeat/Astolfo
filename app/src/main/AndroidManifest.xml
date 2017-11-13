@@ -12,12 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/AstolfoTheme">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.subject.SubjectActivity" />
+        <activity
+            android:name=".ui.subject.SubjectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.subject.SubjectInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.character.CharacterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.comment.CommentActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

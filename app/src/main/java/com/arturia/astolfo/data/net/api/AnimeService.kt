@@ -23,4 +23,11 @@ interface AnimeService {
 
     @GET("{subject}/{number}")
     fun loadSubject(@Path("subject") subject: String, @Path("number") number: String): Observable<ResponseBody>
+
+    @GET("{character}/{number}")
+    fun loadCharacter(@Path("character") character: String, @Path("number") number: String): Observable<ResponseBody>
+
+    @GET("{subject}/{number}/{comments}")
+    fun loadComments(@Path("subject") subject: String, @Path("number") number: String,
+                     @Path("comments") comments: String, @Query("page") page: String): Observable<ResponseBody>
 }

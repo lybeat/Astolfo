@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Astolfo</string>
+
+    <string name="character_summary">角色介绍</string>
+    <string name="character_info">角色资料</string>
+    <string name="more_info">更多资料</string>
+    <string name="related_entry">相关条目</string>
+    <string name="guess_like">猜你喜欢</string>
+    <string name="comment_box">吐槽箱</string>
+    <string name="more_comment">更多吐槽</string>
+    <string name="summary">简介</string>
+    <string name="film_info">影片信息</string>
 </resources>

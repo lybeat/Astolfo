@@ -16,9 +16,11 @@
             android:orientation="vertical">
 
             <FrameLayout
+                android:id="@+id/layout_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -42,20 +44,17 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="话数: 24(22+1+1)"
-                            android:textSize="@dimen/astolfo.text.normal" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="放送开始: 2008年10月2日"
+                            android:lineSpacingExtra="10dp"
+                            android:maxLines="3"
+                            android:textColor="@color/color_content"
                             android:textSize="@dimen/astolfo.text.normal" />
                     </LinearLayout>
 
@@ -102,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:ellipsize="end"
-                android:lineSpacingExtra="5dp"
+                android:lineSpacingExtra="@dimen/astolfo.line.spacing.normal"
                 android:maxLines="3"
                 android:padding="10dp"
                 android:textColor="@color/color_secondary1"
@@ -128,12 +127,13 @@
                     android:background="@color/divider" />
 
                 <TextView
+                    android:id="@+id/tv_more_info"
                     android:layout_width="wrap_content"
                     android:layout_height="19dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="更多资料"
+                    android:text="@string/more_info"
                     android:textColor="@color/color_accent"
                     android:textSize="@dimen/astolfo.text.normal" />
 
@@ -158,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="角色介绍"
+                    android:text="@string/character_summary"
                     android:textColor="@color/color_content"
                     android:textSize="@dimen/astolfo.text.normal" />
 
@@ -183,7 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="相关条目"
+                    android:text="@string/related_entry"
                     android:textColor="@color/color_content"
                     android:textSize="@dimen/astolfo.text.normal" />
 
@@ -208,7 +208,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="猜你喜欢"
+                    android:text="@string/guess_like"
                     android:textColor="@color/color_content"
                     android:textSize="@dimen/astolfo.text.normal" />
 
@@ -233,7 +233,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="吐槽箱"
+                    android:text="@string/comment_box"
                     android:textColor="@color/color_content"
                     android:textSize="@dimen/astolfo.text.normal" />
 
@@ -244,11 +244,12 @@
                     android:overScrollMode="never" />
 
                 <TextView
+                    android:id="@+id/tv_more_comment"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:background="@color/white"
+                    android:background="@drawable/bg_item_selector"
                     android:gravity="center"
-                    android:text="更多吐槽"
+                    android:text="@string/more_comment"
                     android:textColor="@color/color_accent"
                     android:textSize="@dimen/astolfo.text.normal" />
             </LinearLayout>
@@ -258,7 +259,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/astolfo.toolbar.height"
         android:background="@color/color_accent"
         app:navigationIcon="@drawable/ic_back_embed"
         app:theme="@style/Astolfo.Theme.Widget.Toolbar"

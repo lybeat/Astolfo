@@ -16,7 +16,7 @@ import com.chad.library.adapter.base.BaseViewHolder
  * Author: Arturia
  * Date: 2017/11/10
  */
-class CommentAdapter(private var context: Context, comments: List<Comment>)
+class CommentAdapter(private var context: Context, comments: List<Comment>?)
     : BaseQuickAdapter<Comment, BaseViewHolder>(R.layout.item_commment, comments) {
 
     private var options: RequestOptions = RequestOptions()
@@ -31,10 +31,10 @@ class CommentAdapter(private var context: Context, comments: List<Comment>)
         val ratingBar = helper?.getView<RatingBar>(R.id.rating_bar)
         ratingBar?.rating = item?.star?.toFloat()!! / 2
         Glide.with(context)
-                .load("http:" + item.user.avatar)
+                .load("http:" + item.user?.avatar)
                 .apply(options)
                 .into(ivAvatar)
-        helper?.setText(R.id.tv_name, item.user.name)
+        helper?.setText(R.id.tv_name, item.user?.name)
         helper?.setText(R.id.tv_content, item.content)
         helper?.setText(R.id.tv_time, item.time)
     }

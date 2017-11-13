@@ -4,6 +4,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="bg_content">#F7F7F7</color>
+    <color name="color_title">#333333</color>
     <color name="color_content">#474747</color>
 
     <!--用于次要的文字信息-->

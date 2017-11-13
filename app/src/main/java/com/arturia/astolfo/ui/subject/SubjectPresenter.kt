@@ -41,37 +41,39 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
 
     private fun parseHtml(body: ResponseBody?): Subject {
         val document: Document = Jsoup.parse(body?.string())
-        val summary = document.getElementById("subject_summary").text()
+        val summary = document.getElementById("subject_summary")?.text()
         val infoBox = document.getElementsByClass("infobox")
-        val cover = infoBox.first().getElementsByTag("a").first().attr("href")
+        val cover = infoBox?.first()?.getElementsByTag("a")?.first()?.attr("href")
         val name = document.getElementsByClass("nameSingle").first().getElementsByTag("a").first().text()
         val score = document.getElementsByClass("global_score")
-        val span = score.first().getElementsByTag("span")
-        val star = span.first().text()
-        val appraisal = span.last().text()
+        val span = score?.first()?.getElementsByTag("span")
+        val star = span?.first()?.text()
+        val appraisal = span?.last()?.text()
 
         val characters = mutableListOf<Character>()
-        val characterContainer = document.getElementsByClass("user")
-        if (characterContainer.size > 0) {
-            for (item in characterContainer) {
-                val a = item.getElementsByTag("a")
-                val href = a.first().attr("href")
-                val cName = a.first().text()
-                val userImage = item.getElementsByClass("userImage")
-                var avatar = userImage.first().getElementsByTag("img").first().attr("src")
-                val job = item.getElementsByClass("badge_job").text()
-                val cv = item.getElementsByTag("a").last().text()
+        val characterContainer = document.getElementById("browserItemList")
+        if (characterContainer != null) {
+            val userLi = characterContainer.getElementsByTag("li")
+            if (userLi.size > 0) {
+                for (item in userLi) {
+                    val a = item.getElementsByTag("a")
+                    val href = a?.first()?.attr("href")
+                    val cName = a?.first()?.text()
+                    val userImage = item.getElementsByClass("userImage")
+                    var avatar = userImage?.first()?.getElementsByTag("img")?.first()?.attr("src")
+//                    val job = item.getElementsByClass("badge_job")?.text()
+//                    val cv = item.getElementsByTag("a")?.last()?.text()
 
-                Log.i("SubjectPresenter", "href: " + href)
-                Log.i("SubjectPresenter", "cName: " + cName)
-                Log.i("SubjectPresenter", "avatar: " + avatar)
-                Log.i("SubjectPresenter", "job: " + job)
-                Log.i("SubjectPresenter", "cv: " + cv)
+                    Log.i("SubjectPresenter", "href: " + href)
+                    Log.i("SubjectPresenter", "cName: " + cName)
+                    Log.i("SubjectPresenter", "avatar: " + avatar)
+//                    Log.i("SubjectPresenter", "job: " + job)
+//                    Log.i("SubjectPresenter", "cv: " + cv)
 
-                avatar = avatar.replace("/s/", "/m/")
+                    avatar = avatar?.replace("/s/", "/m/")
 
-                val character = Character(avatar, cName, href, job, cv)
-                characters.add(character)
+                    characters.add(Character(avatar, cName, href, "", ""))
+                }
             }
         }
 
@@ -80,43 +82,41 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
         if (entryContainer.size > 0) {
             val entryList = entryContainer.first().getElementsByTag("li")
             for (item in entryList) {
-                val category = item.getElementsByTag("span").first().text()
+                val category = item.getElementsByTag("span")?.first()?.text()
                 val a = item.getElementsByTag("a")
-                val href = a.first().attr("href")
-                var eCover = a.first().getElementsByTag("span").first().attr("style")
-                val eName = a.last().text()
+                val href = a?.first()?.attr("href")
+                var eCover = a?.first()?.getElementsByTag("span")?.first()?.attr("style")
+                val eName = a?.last()?.text()
 
-                eCover = eCover.split("'")[1]
-                eCover = eCover.replace("/m/", "/l/")
+                eCover = eCover?.split("'")?.get(1)
+                eCover = eCover?.replace("/m/", "/l/")
 
                 Log.i("SubjectPresenter", "category: " + category)
                 Log.i("SubjectPresenter", "href: " + href)
                 Log.i("SubjectPresenter", "eCover: " + eCover)
                 Log.i("SubjectPresenter", "eName: " + eName)
 
-                val entry = Entry(eCover, eName, href, category)
-                entries.add(entry)
+                entries.add(Entry(eCover, eName, href, category))
             }
         }
 
         val likes = mutableListOf<Entry>()
         val likeContainer = document.getElementsByClass("coversSmall")
         if (likeContainer.size > 0) {
-            val likeList = likeContainer.first().getElementsByTag("li")
-            for (item in likeList) {
+            val likeList = likeContainer.first()?.getElementsByTag("li")
+            for (item in likeList!!) {
                 val a = item.getElementsByTag("a")
-                val href = a.first().attr("href")
-                val lName = a.first().attr("title")
-                var lCover = item.getElementsByTag("img").first().attr("src")
+                val href = a?.first()?.attr("href")
+                val lName = a?.first()?.attr("title")
+                var lCover = item.getElementsByTag("img")?.first()?.attr("src")
 
                 Log.i("SubjectPresenter", "href: " + href)
                 Log.i("SubjectPresenter", "lName: " + lName)
                 Log.i("SubjectPresenter", "lCover: " + lCover)
 
-                lCover = lCover.replace("/m/", "/l/")
+                lCover = lCover?.replace("/m/", "/l/")
 
-                val like = Entry(lCover, lName, href, "")
-                likes.add(like)
+                likes.add(Entry(lCover, lName, href, ""))
             }
         }
 
@@ -126,17 +126,17 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
             val commentList = commentContainer.getElementsByClass("item clearit")
             if (commentList.size > 0) {
                 for (item in commentList) {
-                    var userAvatar = item.getElementsByTag("a").first().getElementsByTag("span").first().attr("style")
+                    var userAvatar = item.getElementsByTag("a")?.first()?.getElementsByTag("span")?.first()?.attr("style")
                     val div = item.getElementsByClass("text")
-                    val a = div.first().getElementsByTag("a")
-                    val userHref = a.first().attr("href")
-                    val userName = a.first().text()
-                    val time = div.first().getElementsByTag("small").first().text()
-                    val starSpan = div.first().getElementsByTag("span")
+                    val a = div?.first()?.getElementsByTag("a")
+                    val userHref = a?.first()?.attr("href")
+                    val userName = a?.first()?.text()
+                    val time = div?.first()?.getElementsByTag("small")?.first()?.text()
+                    val starSpan = div?.first()?.getElementsByTag("span")
                     val cStar: String = formatStar(starSpan)
                     val content = div.first().getElementsByTag("p").first().text()
 
-                    userAvatar = userAvatar.split("'")[1].replace("/s/", "/l/")
+                    userAvatar = userAvatar?.split("'")?.get(1)?.replace("/s/", "/l/")
 
                     Log.i("SubjectPresenter", "userAvatar: " + userAvatar)
                     Log.i("SubjectPresenter", "userHref: " + userHref)
@@ -145,36 +145,53 @@ class SubjectPresenter(private var view: SubjectContract.View) : SubjectContract
                     Log.i("SubjectPresenter", "cStar: " + cStar)
                     Log.i("SubjectPresenter", "content: " + content)
 
-                    val comment = Comment(content, formatTime(time), cStar, User(userName, userAvatar, userHref))
-                    comments.add(comment)
+                    comments.add(Comment(content, formatTime(time), cStar, User(userName, userAvatar, userHref)))
                 }
             }
         }
+
+        val infoContainer = document.getElementById("infobox")
+        var info = ""
+        if (infoContainer != null) {
+            val infoLi = infoContainer.getElementsByTag("li")
+            for (item in infoLi) {
+                info += item.text()
+                info += "\n"
+            }
+        }
+
+        Log.i("SubjectPresenter", "info: " + info)
 
         Log.i("SubjectPresenter", "cover: " + cover)
         Log.i("SubjectPresenter", "name: " + name)
         Log.i("SubjectPresenter", "summary: " + summary)
 
-        return Subject(cover, name, summary, characters, entries, likes, comments, star, appraisal, "")
+        return Subject(cover, name, summary, characters, entries, likes, comments, star, appraisal, info)
     }
 
-    private fun formatStar(starSpan: Elements): String {
-        var star: String
-        if (starSpan.size > 0) {
-            star = starSpan.first().attr("class")
-            star = if (star.isNotEmpty() && star.length > 8) {
-                star.substring(6, 8)
+    private fun formatStar(starSpan: Elements?): String {
+        var star = "0"
+        if (starSpan != null) {
+            if (starSpan.size > 0) {
+                star = starSpan.first().attr("class")
+                star = if (star.isNotEmpty() && star.length > 8) {
+                    star = star.split(" ")[0]
+                    star.substring(6, star.length)
+                } else {
+                    "0"
+                }
             } else {
-                "0"
+                star = "0"
             }
-        } else {
-            star = "0"
         }
         return star
     }
 
-    private fun formatTime(time: String): String {
-        var newTime = time.split(" ")[1]
+    private fun formatTime(time: String?): String {
+        var newTime = time?.split(" ")?.get(1)
+        if (newTime == null || newTime == "") {
+            return ""
+        }
         when {
             newTime.endsWith("d") -> newTime = newTime.removeSuffix("d") + "天前"
             newTime.endsWith("h") -> newTime = newTime.removeSuffix("h") + "小时前"

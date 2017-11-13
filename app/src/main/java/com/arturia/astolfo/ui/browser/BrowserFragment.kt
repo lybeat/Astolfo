@@ -45,6 +45,11 @@ class BrowserFragment : BaseFragment(), BrowserContract.View {
         BrowserPresenter(this).loadAnimeBrowser("rank", "1")
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsubscribe()
+    }
+
     override fun setPresenter(presenter: BrowserContract.Presenter) {
         this.presenter = presenter
     }

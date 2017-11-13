@@ -40,6 +40,5 @@ class CalendarFragment : BaseFragment() {
             SubjectActivity.launch(activity, calendar.href)
         }
         recycler_view.adapter = calendarAdapter
-
     }
 }
