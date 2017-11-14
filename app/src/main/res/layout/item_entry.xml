@@ -3,7 +3,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:foreground="@drawable/fg_item_selector"
     android:orientation="vertical">
 
     <ImageView
@@ -11,6 +10,7 @@
         android:layout_width="80dp"
         android:layout_height="112dp"
         android:contentDescription="@null"
+        android:foreground="@drawable/fg_ripple"
         android:scaleType="centerCrop" />
 
     <TextView

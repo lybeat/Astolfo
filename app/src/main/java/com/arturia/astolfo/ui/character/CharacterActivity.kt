@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Character
-import com.arturia.astolfo.ui.base.BaseActivity
+import com.arturia.astolfo.ui.base.SwipeActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_character.*
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_character.*
  * Author: Arturia
  * Date: 2017/11/13
  */
-class CharacterActivity : BaseActivity(), CharacterContract.View {
+class CharacterActivity : SwipeActivity(), CharacterContract.View {
 
     private lateinit var presenter: CharacterContract.Presenter
 

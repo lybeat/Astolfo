@@ -5,23 +5,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.arturia.astolfo.GlideApp
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Character
 import com.arturia.astolfo.data.model.Entry
 import com.arturia.astolfo.data.model.Subject
-import com.arturia.astolfo.ui.base.BaseActivity
+import com.arturia.astolfo.ui.base.SwipeActivity
 import com.arturia.astolfo.ui.character.CharacterActivity
 import com.arturia.astolfo.ui.comment.CommentActivity
+import com.arturia.astolfo.ui.comment.CommentAdapter
+import com.arturia.astolfo.util.BlurTransformation
 import com.arturia.astolfo.widget.LittleLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.arturia.astolfo.widget.ObservableScrollView
 import kotlinx.android.synthetic.main.activity_subject.*
+
+
 
 /**
  * Author: Arturia
  * Date: 2017/11/7
  */
-class SubjectActivity : BaseActivity(), SubjectContract.View {
+class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollView.ScrollViewListener {
 
     private lateinit var presenter: SubjectContract.Presenter
     private var number = ""
@@ -40,6 +44,8 @@ class SubjectActivity : BaseActivity(), SubjectContract.View {
 
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener({ finish() })
+        toolbar.setBackgroundColor(resources.getColor(R.color.color_accent))
+        toolbar.background.alpha = 0
 
         val href = intent.getStringExtra("href")
         val temp = href.split("/")
@@ -47,6 +53,8 @@ class SubjectActivity : BaseActivity(), SubjectContract.View {
             number = temp[2]
             SubjectPresenter(this).loadSubject(number)
         }
+
+        scroll_view.setOnScrollChangedListener(this)
     }
 
     override fun onDestroy() {
@@ -69,11 +77,14 @@ class SubjectActivity : BaseActivity(), SubjectContract.View {
 
     override fun onSubjectLoaded(subject: Subject) {
         toolbar.title = subject.name
-        layout_header.visibility = View.VISIBLE
-        Glide.with(this)
-                .load("http:" + subject.cover)
-                .apply(RequestOptions().placeholder(R.drawable.bg_placeholder).error(R.drawable.bg_placeholder))
+        header_layout.visibility = View.VISIBLE
+        GlideApp.with(this)
+                .load("http://" + subject.cover)
                 .into(iv_cover)
+        GlideApp.with(this)
+                .load("http://" + subject.cover)
+                .transform(BlurTransformation(this))
+                .into(iv_header)
         tv_star.text = subject.star
         if (subject.star != null && subject.star != "") {
             rating_bar.rating = subject.star!!.toFloat() / 2
@@ -128,6 +139,17 @@ class SubjectActivity : BaseActivity(), SubjectContract.View {
             recycler_comment.adapter = CommentAdapter(this, subject.comments!!)
             layout_comment.visibility = View.VISIBLE
             tv_more_comment.setOnClickListener { CommentActivity.launch(this, number) }
+        }
+    }
+
+    override fun onScrollChanged(view: ObservableScrollView, x: Int, y: Int, oldX: Int, oldY: Int) {
+        when {
+            y <= 0 -> toolbar.background?.alpha = 0
+            y in 1..400 -> {
+                val percent = y.toFloat() / 400
+                toolbar.background?.alpha = (255 * percent).toInt()
+            }
+            y > 400 -> toolbar.background?.alpha = 255
         }
     }
 }

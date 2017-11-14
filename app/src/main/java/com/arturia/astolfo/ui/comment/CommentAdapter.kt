@@ -1,4 +1,4 @@
-package com.arturia.astolfo.ui.subject
+package com.arturia.astolfo.ui.comment
 
 import android.content.Context
 import android.widget.ImageView
@@ -17,7 +17,7 @@ import com.chad.library.adapter.base.BaseViewHolder
  * Date: 2017/11/10
  */
 class CommentAdapter(private var context: Context, comments: List<Comment>?)
-    : BaseQuickAdapter<Comment, BaseViewHolder>(R.layout.item_commment, comments) {
+    : BaseQuickAdapter<Comment, BaseViewHolder>(R.layout.item_comment, comments) {
 
     private var options: RequestOptions = RequestOptions()
 

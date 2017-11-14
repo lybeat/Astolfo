@@ -3,6 +3,7 @@
     <color name="color_accent">#007947</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="bg_content">#F7F7F7</color>
     <color name="color_title">#333333</color>
     <color name="color_content">#474747</color>
@@ -15,4 +16,5 @@
     <color name="bg_secondary">#ECECEC</color>
 
     <color name="divider">#1a000000</color>
+    <color name="ripple">#3a000000</color>
 </resources>

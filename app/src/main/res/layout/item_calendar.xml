@@ -3,10 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:layout_marginLeft="2dp"
-    android:layout_marginRight="2dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
     android:layout_marginTop="8dp"
-    android:foreground="@drawable/fg_item_selector"
     android:orientation="vertical">
 
     <com.arturia.astolfo.widget.FlowImageView
@@ -14,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@null"
+        android:foreground="@drawable/fg_ripple"
         android:scaleType="centerCrop" />
 
     <TextView

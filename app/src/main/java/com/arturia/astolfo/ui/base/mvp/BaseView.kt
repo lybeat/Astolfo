@@ -1,4 +1,4 @@
-package com.arturia.astolfo.ui.mvp
+package com.arturia.astolfo.ui.base.mvp
 
 /**
  * Author: Arturia

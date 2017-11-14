@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/bg_content">
+    android:layout_height="match_parent"
+    android:background="@color/color_accent">
 
-    <ScrollView
+    <com.arturia.astolfo.widget.ObservableScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/bg_content"
         android:scrollbars="none">
 
         <LinearLayout
@@ -16,27 +19,30 @@
             android:orientation="vertical">
 
             <FrameLayout
-                android:id="@+id/layout_header"
+                android:id="@+id/header_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:visibility="gone">
 
                 <ImageView
+                    android:id="@+id/iv_header"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:contentDescription="@null" />
+                    android:layout_height="180dp"
+                    android:contentDescription="@null"
+                    android:foreground="@color/divider"
+                    android:scaleType="centerCrop" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="70dp"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/iv_cover"
-                        android:layout_width="78dp"
-                        android:layout_height="100dp"
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:contentDescription="@null" />
@@ -44,7 +50,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -54,7 +60,7 @@
                             android:layout_height="wrap_content"
                             android:lineSpacingExtra="10dp"
                             android:maxLines="3"
-                            android:textColor="@color/color_content"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/astolfo.text.normal" />
                     </LinearLayout>
 
@@ -64,13 +70,14 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:gravity="center"
+                        android:gravity="center_horizontal"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_star"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/white"
                             android:textSize="28sp" />
 
                         <TextView
@@ -78,6 +85,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/astolfo.text.small" />
 
                         <RatingBar
@@ -88,9 +96,7 @@
                             android:layout_marginTop="10dp"
                             android:isIndicator="true"
                             android:numStars="5"
-                            android:stepSize="0.1"
-                            android:visibility="gone" />
-
+                            android:stepSize="0.1" />
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>
@@ -103,7 +109,10 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/astolfo.line.spacing.normal"
                 android:maxLines="3"
-                android:padding="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
                 android:textColor="@color/color_secondary1"
                 android:textSize="@dimen/astolfo.text.normal"
                 android:visibility="gone" />
@@ -165,8 +174,8 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_character"
                     style="@style/Astolfo.Theme.Widget.RecyclerView.Horizontal"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp" />
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -190,8 +199,8 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_entry"
                     style="@style/Astolfo.Theme.Widget.RecyclerView.Horizontal"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp" />
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -241,26 +250,27 @@
                     android:id="@+id/recycler_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:overScrollMode="never" />
+                    android:overScrollMode="never"
+                    tools:listitem="@layout/item_comment" />
 
                 <TextView
                     android:id="@+id/tv_more_comment"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:background="@drawable/bg_item_selector"
+                    android:background="@drawable/bg_ripple"
                     android:gravity="center"
                     android:text="@string/more_comment"
                     android:textColor="@color/color_accent"
                     android:textSize="@dimen/astolfo.text.normal" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </com.arturia.astolfo.widget.ObservableScrollView>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/astolfo.toolbar.height"
-        android:background="@color/color_accent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         app:navigationIcon="@drawable/ic_back_embed"
         app:theme="@style/Astolfo.Theme.Widget.Toolbar"
         app:titleTextAppearance="@style/Astolfo.Theme.TextAppearance.Toolbar.Title" />

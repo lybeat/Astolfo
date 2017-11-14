@@ -4,14 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.arturia.astolfo.R
-import com.arturia.astolfo.ui.base.BaseActivity
+import com.arturia.astolfo.ui.base.SwipeActivity
 import kotlinx.android.synthetic.main.activity_subject_info.*
 
 /**
  * Author: Arturia
  * Date: 2017/11/13
  */
-class SubjectInfoActivity : BaseActivity() {
+class SubjectInfoActivity : SwipeActivity() {
 
     companion object {
         fun launch(context: Context, name: String?, summary: String?, info: String?) {

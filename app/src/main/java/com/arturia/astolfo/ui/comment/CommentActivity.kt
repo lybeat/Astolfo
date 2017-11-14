@@ -6,15 +6,14 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Comment
-import com.arturia.astolfo.ui.base.BaseActivity
-import com.arturia.astolfo.ui.subject.CommentAdapter
+import com.arturia.astolfo.ui.base.SwipeActivity
 import kotlinx.android.synthetic.main.activity_comment.*
 
 /**
  * Author: Arturia
  * Date: 2017/11/13
  */
-class CommentActivity : BaseActivity(), CommentContract.View {
+class CommentActivity : SwipeActivity(), CommentContract.View {
 
     private lateinit var presenter: CommentContract.Presenter
     private lateinit var adapter: CommentAdapter

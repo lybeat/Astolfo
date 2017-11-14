@@ -1,8 +1,8 @@
 package com.arturia.astolfo.ui.browser
 
 import com.arturia.astolfo.data.model.Anime
-import com.arturia.astolfo.ui.mvp.BasePresenter
-import com.arturia.astolfo.ui.mvp.BaseView
+import com.arturia.astolfo.ui.base.mvp.BasePresenter
+import com.arturia.astolfo.ui.base.mvp.BaseView
 
 /**
  * Author: Arturia

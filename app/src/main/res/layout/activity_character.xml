@@ -2,12 +2,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/color_accent"
     android:orientation="vertical">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/bg_content"
         android:scrollbars="none">
 
         <LinearLayout
@@ -21,7 +23,7 @@
                 android:layout_width="110dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="100dp"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop" />
 
@@ -69,8 +71,9 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/astolfo.toolbar.height"
+        android:layout_height="wrap_content"
         android:background="@color/color_accent"
+        android:fitsSystemWindows="true"
         app:navigationIcon="@drawable/ic_back_embed"
         app:theme="@style/Astolfo.Theme.Widget.Toolbar"
         app:titleTextAppearance="@style/Astolfo.Theme.TextAppearance.Toolbar.Title" />
