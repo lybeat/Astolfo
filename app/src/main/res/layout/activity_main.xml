@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/white"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -33,7 +35,8 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/iv_calendar"
@@ -47,9 +50,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="每日放送"
+                    android:text="@string/calendar"
                     android:textColor="@color/color_secondary2"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/astolfo.text.tiny" />
             </LinearLayout>
 
             <LinearLayout
@@ -58,7 +61,8 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/iv_browser"
@@ -72,9 +76,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="排行榜"
+                    android:text="@string/rank"
                     android:textColor="@color/color_secondary2"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/astolfo.text.tiny" />
             </LinearLayout>
 
             <LinearLayout
@@ -83,7 +87,8 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/iv_tag"
@@ -97,9 +102,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="动画标签"
+                    android:text="@string/anime_tag"
                     android:textColor="@color/color_secondary2"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/astolfo.text.tiny" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

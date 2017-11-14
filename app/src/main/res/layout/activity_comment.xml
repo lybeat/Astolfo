@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_content"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -16,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/color_accent"
+            android:fitsSystemWindows="true"
             app:navigationIcon="@drawable/ic_back_embed"
             app:theme="@style/Astolfo.Theme.Widget.Toolbar"
             app:titleTextAppearance="@style/Astolfo.Theme.TextAppearance.Toolbar.Title" />

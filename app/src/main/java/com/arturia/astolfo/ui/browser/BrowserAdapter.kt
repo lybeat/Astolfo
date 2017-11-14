@@ -2,10 +2,9 @@ package com.arturia.astolfo.ui.browser
 
 import android.content.Context
 import android.widget.ImageView
+import com.arturia.astolfo.GlideApp
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Anime
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 
@@ -18,9 +17,10 @@ class BrowserAdapter(private val context: Context, data: List<Anime>?)
 
     override fun convert(helper: BaseViewHolder?, item: Anime?) {
         val ivCover = helper?.getView<ImageView>(R.id.iv_cover)
-        Glide.with(context)
+        GlideApp.with(context)
                 .load("http:" + item?.cover)
-                .apply(RequestOptions().placeholder(R.drawable.bg_placeholder).error(R.drawable.bg_placeholder))
+                .placeholder(R.drawable.bg_placeholder)
+                .error(R.drawable.bg_placeholder)
                 .into(ivCover)
         helper?.setText(R.id.tv_name, item?.name)
         helper?.setText(R.id.tv_info, item?.info)

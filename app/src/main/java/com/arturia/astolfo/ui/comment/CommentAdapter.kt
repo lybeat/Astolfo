@@ -3,12 +3,11 @@ package com.arturia.astolfo.ui.comment
 import android.content.Context
 import android.widget.ImageView
 import android.widget.RatingBar
+import com.arturia.astolfo.GlideApp
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Comment
 import com.arturia.astolfo.util.UnitUtil
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 
@@ -19,20 +18,14 @@ import com.chad.library.adapter.base.BaseViewHolder
 class CommentAdapter(private var context: Context, comments: List<Comment>?)
     : BaseQuickAdapter<Comment, BaseViewHolder>(R.layout.item_comment, comments) {
 
-    private var options: RequestOptions = RequestOptions()
-
-    init {
-        options = options.placeholder(R.drawable.bg_placeholder).error(R.drawable.bg_placeholder)
-                .transform(RoundedCorners(UnitUtil.dp2px(context, 18.0f)))
-    }
-
     override fun convert(helper: BaseViewHolder?, item: Comment?) {
         val ivAvatar = helper?.getView<ImageView>(R.id.iv_avatar)
         val ratingBar = helper?.getView<RatingBar>(R.id.rating_bar)
         ratingBar?.rating = item?.star?.toFloat()!! / 2
-        Glide.with(context)
+        GlideApp.with(context)
                 .load("http:" + item.user?.avatar)
-                .apply(options)
+                .transform(RoundedCorners(UnitUtil.dp2px(context, 18.0f)))
+                .error(R.drawable.bg_placeholder)
                 .into(ivAvatar)
         helper?.setText(R.id.tv_name, item.user?.name)
         helper?.setText(R.id.tv_content, item.content)

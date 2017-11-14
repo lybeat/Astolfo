@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Astolfo</string>
 
+    <string name="calendar">每日放送</string>
+    <string name="rank">排行榜</string>
+    <string name="anime_tag">动画标签</string>
     <string name="character_summary">角色介绍</string>
     <string name="character_info">角色资料</string>
     <string name="more_info">更多资料</string>
