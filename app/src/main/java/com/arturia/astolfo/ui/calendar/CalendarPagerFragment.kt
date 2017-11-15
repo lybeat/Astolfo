@@ -3,10 +3,13 @@ package com.arturia.astolfo.ui.calendar
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Calendar
 import com.arturia.astolfo.ui.base.BaseFragment
@@ -19,21 +22,34 @@ import java.util.*
  * Author: Arturia
  * Date: 2017/10/31
  */
-class CalendarPagerFragment : BaseFragment(), CalendarContract.View {
+class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnMenuItemClickListener {
 
     private lateinit var presenter: CalendarContract.Presenter
     private var fragments = mutableListOf<Fragment>()
     private var titles = mutableListOf<String>()
     private var pagePosition = 0
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_pager_calendar, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater?.inflate(R.layout.fragment_pager_calendar, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        toolbar.inflateMenu(R.menu.menu_main)
+        toolbar.setNavigationIcon(R.drawable.ic_menu)
+        toolbar.setNavigationOnClickListener {  }
+        toolbar.setOnMenuItemClickListener(this)
+
         initTitles()
         CalendarPresenter(this).subscribe()
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.action_search) {
+            Toast.makeText(activity, "onMenuItemClick", Toast.LENGTH_SHORT).show()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
@@ -63,11 +79,9 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View {
     }
 
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun handleError(error: Throwable) {

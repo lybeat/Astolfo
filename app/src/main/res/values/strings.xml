@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Astolfo</string>
 
+    <string name="menu_search">搜索</string>
+
     <string name="calendar">每日放送</string>
     <string name="rank">排行榜</string>
     <string name="anime_tag">动画标签</string>
