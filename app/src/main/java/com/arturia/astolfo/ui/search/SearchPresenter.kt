@@ -1,4 +1,4 @@
-package com.arturia.astolfo.ui.browser
+package com.arturia.astolfo.ui.search
 
 import com.arturia.astolfo.data.model.Anime
 import com.arturia.astolfo.data.source.AnimeRepository
@@ -13,9 +13,9 @@ import rx.subscriptions.CompositeSubscription
 
 /**
  * Author: Arturia
- * Date: 2017/11/7
+ * Date: 2017/11/16
  */
-class BrowserPresenter(private var view: BrowserContract.View) : BrowserContract.Presenter {
+class SearchPresenter(private var view: SearchContract.View) : SearchContract.Presenter {
 
     private var repository: AnimeRepository = AnimeRepository.get()
     private var compositeSubscription: CompositeSubscription = CompositeSubscription()
@@ -31,11 +31,11 @@ class BrowserPresenter(private var view: BrowserContract.View) : BrowserContract
         compositeSubscription.clear()
     }
 
-    override fun loadAnimeBrowser(sort: String, page: String) {
-        val subscription = repository.loadAnimeBrowser(sort, page)
+    override fun loadSearch(name: String, cat: String, page: String) {
+        val subscription = repository.loadSearch(name, cat, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ view.onAnimeLoaded(parseHtml(it)) }, { view.handleError(it) }, { view.hideLoading() })
+                .subscribe({ view.onSearchLoaded(parseHtml(it)) }, { view.handleError(it) }, { view.hideLoading() })
         compositeSubscription.add(subscription)
     }
 

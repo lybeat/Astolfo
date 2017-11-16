@@ -20,4 +20,8 @@ interface AnimeContract {
     fun loadCharacter(number: String): Observable<ResponseBody>
 
     fun loadComments(number: String, page: String): Observable<ResponseBody>
+
+    fun loadTagAnime(name: String, page: String): Observable<ResponseBody>
+
+    fun loadSearch(name: String, cat: String, page: String): Observable<ResponseBody>
 }

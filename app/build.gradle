@@ -58,6 +58,9 @@ dependencies {
     // Glide
     compile 'com.github.bumptech.glide:glide:4.3.0'
     kapt 'com.github.bumptech.glide:compiler:4.3.0'
+
+    // 3dTagCloudAndroid
+    compile 'com.moxun:tagcloudlib:1.2.0'
 }
 repositories {
     mavenCentral()

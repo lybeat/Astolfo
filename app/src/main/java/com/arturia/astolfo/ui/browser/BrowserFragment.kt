@@ -45,7 +45,7 @@ class BrowserFragment : BaseFragment(), BrowserContract.View, Toolbar.OnMenuItem
         }, recycler_view)
         adapter.setOnItemClickListener { adapter, _, position ->
             val anime: Anime = adapter.data[position] as Anime
-            SubjectActivity.launch(activity, anime.href)
+            SubjectActivity.launch(activity, anime.href!!)
         }
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.adapter = adapter

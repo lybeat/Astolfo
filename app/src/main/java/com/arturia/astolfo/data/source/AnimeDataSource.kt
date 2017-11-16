@@ -16,27 +16,19 @@ class AnimeDataSource : AnimeContract {
             .create(Hosts.bangumi)
             .create(AnimeService::class.java)
 
-    override fun loadAnimeCalendar(): Observable<ResponseBody> {
-        return service.loadAnimeCalendar()
-    }
+    override fun loadAnimeCalendar(): Observable<ResponseBody> = service.loadAnimeCalendar()
 
-    override fun loadAnimeTag(): Observable<ResponseBody> {
-        return service.loadAnimeTag()
-    }
+    override fun loadAnimeTag(): Observable<ResponseBody> = service.loadAnimeTag()
 
-    override fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody> {
-        return service.loadAnimeBrowser(sort, page)
-    }
+    override fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody> = service.loadAnimeBrowser(sort, page)
 
-    override fun loadSubject(number: String): Observable<ResponseBody> {
-        return service.loadSubject("subject", number)
-    }
+    override fun loadSubject(number: String): Observable<ResponseBody> = service.loadSubject("subject", number)
 
-    override fun loadCharacter(number: String): Observable<ResponseBody> {
-        return service.loadCharacter("character", number)
-    }
+    override fun loadCharacter(number: String): Observable<ResponseBody> = service.loadCharacter("character", number)
 
-    override fun loadComments(number: String, page: String): Observable<ResponseBody> {
-        return service.loadComments("subject", number, "comments", page)
-    }
+    override fun loadComments(number: String, page: String): Observable<ResponseBody> = service.loadComments("subject", number, "comments", page)
+
+    override fun loadTagAnime(name: String, page: String): Observable<ResponseBody> = service.loadTagAnime(name, page)
+
+    override fun loadSearch(name: String, cat: String, page: String): Observable<ResponseBody> = service.loadSearch(name, cat, page)
 }

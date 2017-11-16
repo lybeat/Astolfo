@@ -15,33 +15,25 @@ class AnimeRepository : AnimeContract {
 
         val instance = AnimeRepository()
     }
+
     companion object {
 
-        fun get(): AnimeRepository {
-            return Holder.instance
-        }
-    }
-    override fun loadAnimeCalendar(): Observable<ResponseBody> {
-        return dataSource.loadAnimeCalendar()
+        fun get(): AnimeRepository = Holder.instance
     }
 
-    override fun loadAnimeTag(): Observable<ResponseBody> {
-        return dataSource.loadAnimeTag()
-    }
+    override fun loadAnimeCalendar(): Observable<ResponseBody> = dataSource.loadAnimeCalendar()
 
-    override fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody> {
-        return dataSource.loadAnimeBrowser(sort, page)
-    }
+    override fun loadAnimeTag(): Observable<ResponseBody> = dataSource.loadAnimeTag()
 
-    override fun loadSubject(number: String): Observable<ResponseBody> {
-        return dataSource.loadSubject(number)
-    }
+    override fun loadAnimeBrowser(sort: String, page: String): Observable<ResponseBody> = dataSource.loadAnimeBrowser(sort, page)
 
-    override fun loadCharacter(number: String): Observable<ResponseBody> {
-        return dataSource.loadCharacter(number)
-    }
+    override fun loadSubject(number: String): Observable<ResponseBody> = dataSource.loadSubject(number)
 
-    override fun loadComments(number: String, page: String): Observable<ResponseBody> {
-        return dataSource.loadComments(number, page)
-    }
+    override fun loadCharacter(number: String): Observable<ResponseBody> = dataSource.loadCharacter(number)
+
+    override fun loadComments(number: String, page: String): Observable<ResponseBody> = dataSource.loadComments(number, page)
+
+    override fun loadTagAnime(name: String, page: String) = dataSource.loadTagAnime(name, page)
+
+    override fun loadSearch(name: String, cat: String, page: String): Observable<ResponseBody> = dataSource.loadSearch(name, cat, page)
 }

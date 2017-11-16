@@ -30,4 +30,10 @@ interface AnimeService {
     @GET("{subject}/{number}/{comments}")
     fun loadComments(@Path("subject") subject: String, @Path("number") number: String,
                      @Path("comments") comments: String, @Query("page") page: String): Observable<ResponseBody>
+
+    @GET("anime/tag/{name}")
+    fun loadTagAnime(@Path("name") name: String, @Query("page") page: String): Observable<ResponseBody>
+
+    @GET("subject_search/{name}")
+    fun loadSearch(@Path("name") name: String, @Query("cat") cat: String , @Query("page") page: String): Observable<ResponseBody>
 }
