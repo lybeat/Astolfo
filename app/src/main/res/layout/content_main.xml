@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_calendar" />
+                    android:src="@drawable/ic_calendar_selected" />
 
                 <TextView
                     android:id="@+id/tv_calendar"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/calendar"
-                    android:textColor="@color/color_secondary2"
+                    android:textColor="@color/color_accent"
                     android:textSize="@dimen/astolfo.text.tiny" />
             </LinearLayout>
 
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_tv" />
+                    android:src="@drawable/ic_tv_normal" />
 
                 <TextView
                     android:id="@+id/tv_browser"
@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_tag" />
+                    android:src="@drawable/ic_tag_normal" />
 
                 <TextView
                     android:id="@+id/tv_tag"

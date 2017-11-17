@@ -1,5 +1,6 @@
 package com.arturia.astolfo.ui.tag
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import android.widget.Toast
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Tag
 import com.arturia.astolfo.ui.base.BaseFragment
+import com.arturia.astolfo.ui.main.FragmentListener
+import com.arturia.astolfo.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_tag.*
 
 /**
@@ -19,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_tag.*
 class TagFragment : BaseFragment(), TagContract.View, Toolbar.OnMenuItemClickListener {
 
     private lateinit var presenter: TagContract.Presenter
+    private lateinit var listener: FragmentListener
 
     private val tags = mutableListOf<Tag>()
     private var index = 0
@@ -31,7 +35,7 @@ class TagFragment : BaseFragment(), TagContract.View, Toolbar.OnMenuItemClickLis
 
         toolbar.inflateMenu(R.menu.menu_main)
         toolbar.setNavigationIcon(R.drawable.ic_menu)
-        toolbar.setNavigationOnClickListener {  }
+        toolbar.setNavigationOnClickListener { listener.onNavigationClick() }
         toolbar.setOnMenuItemClickListener(this)
 
         fab_refresh.setOnClickListener {
@@ -47,6 +51,15 @@ class TagFragment : BaseFragment(), TagContract.View, Toolbar.OnMenuItemClickLis
         TagPresenter(this).loadAnimeTag()
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is FragmentListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement FragmentListener")
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.unsubscribe()
@@ -54,7 +67,7 @@ class TagFragment : BaseFragment(), TagContract.View, Toolbar.OnMenuItemClickLis
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.action_search) {
-            Toast.makeText(activity, "onMenuItemClick", Toast.LENGTH_SHORT).show()
+            SearchActivity.launch(activity)
         }
 
         return super.onOptionsItemSelected(item)

@@ -15,4 +15,10 @@
     <string name="more_comment">更多吐槽</string>
     <string name="summary">简介</string>
     <string name="film_info">影片信息</string>
+    <string name="search_history">搜索历史</string>
+    <string name="clear_history">清除历史</string>
+
+    <string name="anime_subscription">新番订阅</string>
+    <string name="anime_favorite">番剧收藏</string>
+    <string name="settings">设置</string>
 </resources>

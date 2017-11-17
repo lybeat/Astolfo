@@ -1,19 +1,20 @@
 package com.arturia.astolfo.ui.calendar
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Calendar
 import com.arturia.astolfo.ui.base.BaseFragment
 import com.arturia.astolfo.ui.base.TabAdapter
+import com.arturia.astolfo.ui.main.FragmentListener
+import com.arturia.astolfo.ui.search.SearchActivity
 import com.arturia.astolfo.util.DateUtil
 import kotlinx.android.synthetic.main.fragment_pager_calendar.*
 import java.util.*
@@ -25,6 +26,7 @@ import java.util.*
 class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnMenuItemClickListener {
 
     private lateinit var presenter: CalendarContract.Presenter
+    private lateinit var listener: FragmentListener
     private var fragments = mutableListOf<Fragment>()
     private var titles = mutableListOf<String>()
     private var pagePosition = 0
@@ -37,16 +39,25 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnM
 
         toolbar.inflateMenu(R.menu.menu_main)
         toolbar.setNavigationIcon(R.drawable.ic_menu)
-        toolbar.setNavigationOnClickListener {  }
+        toolbar.setNavigationOnClickListener { listener.onNavigationClick() }
         toolbar.setOnMenuItemClickListener(this)
 
         initTitles()
         CalendarPresenter(this).subscribe()
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is FragmentListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement FragmentListener")
+        }
+    }
+
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.action_search) {
-            Toast.makeText(activity, "onMenuItemClick", Toast.LENGTH_SHORT).show()
+            SearchActivity.launch(activity)
         }
 
         return super.onOptionsItemSelected(item)
@@ -86,7 +97,6 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnM
 
     override fun handleError(error: Throwable) {
         error.printStackTrace()
-        Log.e("CalendarPagerFragment", "@@@error: " + error.localizedMessage)
     }
 
     override fun onCalendarLoaded(calendar: List<Calendar>?) {

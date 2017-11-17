@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Tag
-import com.arturia.astolfo.ui.search.SearchActivity
 import com.moxun.tagcloudlib.view.TagsAdapter
 
 /**
@@ -28,7 +27,7 @@ class TagAdapter(private var tags: List<Tag>) : TagsAdapter() {
         tv.text = tags[position].name
         tv.gravity = Gravity.CENTER
         tv.setTextColor(context?.resources?.getColor(R.color.color_accent)!!)
-        tv.setOnClickListener { SearchActivity.launch(context, tags[position].name) }
+        tv.setOnClickListener { TagAnimeActivity.launch(context, tags[position].name) }
         return tv
     }
 
