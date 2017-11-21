@@ -3,7 +3,6 @@ package com.arturia.astolfo.ui.subject
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.arturia.astolfo.R
 import com.arturia.astolfo.ui.base.SwipeActivity
 import kotlinx.android.synthetic.main.activity_subject_info.*
 

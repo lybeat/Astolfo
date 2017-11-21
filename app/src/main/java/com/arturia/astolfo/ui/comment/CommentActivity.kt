@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Comment
 import com.arturia.astolfo.ui.base.SwipeActivity
 import kotlinx.android.synthetic.main.activity_comment.*
@@ -77,6 +76,7 @@ class CommentActivity : SwipeActivity(), CommentContract.View {
             adapter.setNewData(comments)
         } else {
             adapter.loadMoreComplete()
+            adapter.setEnableLoadMore(false)
             adapter.addData(comments)
         }
     }

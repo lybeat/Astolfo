@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Anime
 import com.arturia.astolfo.ui.base.SwipeActivity
 import com.arturia.astolfo.ui.browser.BrowserAdapter

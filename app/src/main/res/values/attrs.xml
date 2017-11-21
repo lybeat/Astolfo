@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CategoryMenu">
+        <attr name="aliceCategory" format="string|reference" />
+    </declare-styleable>
+    <declare-styleable name="MenuItem">
+        <attr name="aliceTitle" format="string|reference" />
+        <attr name="aliceSummary" format="string|reference" />
+        <attr name="aliceState" format="string|reference" />
+        <attr name="aliceChecked" format="boolean" />
+        <attr name="aliceUnderline" format="boolean" />
+        <attr name="aliceIcon" format="reference" />
+    </declare-styleable>
+
+</resources>

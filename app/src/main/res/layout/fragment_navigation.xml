@@ -17,7 +17,7 @@
             <include layout="@layout/header_nav" />
 
             <LinearLayout
-                android:id="@+id/my_comic_layout"
+                android:id="@+id/subscription_layout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/bg_ripple"
@@ -41,7 +41,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/chat_layout"
+                android:id="@+id/favorite_layout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/bg_ripple"
@@ -64,7 +64,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/message_layout"
+                android:id="@+id/settings_layout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/bg_ripple"

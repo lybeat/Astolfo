@@ -12,11 +12,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.arturia.astolfo.R
-
-
-
-
 
 
 /**
@@ -92,7 +87,7 @@ open class SwipeLayout : FrameLayout {
         return true
     }
 
-    protected override fun dispatchDraw(canvas: Canvas) {
+    override fun dispatchDraw(canvas: Canvas) {
         super.dispatchDraw(canvas)
         drawShadow(canvas)
     }

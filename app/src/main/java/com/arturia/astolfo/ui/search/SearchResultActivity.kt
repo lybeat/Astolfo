@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Anime
 import com.arturia.astolfo.ui.base.SwipeActivity
 import com.arturia.astolfo.ui.browser.BrowserAdapter
@@ -73,9 +72,14 @@ class SearchResultActivity : SwipeActivity(), SearchContract.View {
 
     override fun onSearchLoaded(animeList: List<Anime>) {
         if (page == 1) {
+            if (animeList.size < 20) {
+                adapter.loadMoreComplete()
+                adapter.setEnableLoadMore(false)
+            }
             adapter.setNewData(animeList)
         } else {
             adapter.loadMoreComplete()
+            adapter.setEnableLoadMore(false)
             adapter.addData(animeList)
         }
     }

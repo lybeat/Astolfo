@@ -3,8 +3,6 @@ package com.arturia.astolfo.ui.comment
 import android.content.Context
 import android.widget.ImageView
 import android.widget.RatingBar
-import com.arturia.astolfo.GlideApp
-import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Comment
 import com.arturia.astolfo.util.UnitUtil
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners

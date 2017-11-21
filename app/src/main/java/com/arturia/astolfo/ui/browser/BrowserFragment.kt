@@ -97,6 +97,7 @@ class BrowserFragment : BaseFragment(), BrowserContract.View, Toolbar.OnMenuItem
             adapter.setNewData(animeList)
         } else {
             adapter.loadMoreComplete()
+            adapter.setEnableLoadMore(false)
             adapter.addData(animeList)
         }
     }

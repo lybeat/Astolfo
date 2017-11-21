@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Tag
 import com.arturia.astolfo.ui.base.BaseFragment
 import com.arturia.astolfo.ui.main.FragmentListener

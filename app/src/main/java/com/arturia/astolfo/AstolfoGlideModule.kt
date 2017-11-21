@@ -8,5 +8,4 @@ import com.bumptech.glide.module.AppGlideModule
  * Date: 2017/11/14
  */
 @GlideModule
-class AstolfoGlideModule : AppGlideModule() {
-}
+class AstolfoGlideModule : AppGlideModule()

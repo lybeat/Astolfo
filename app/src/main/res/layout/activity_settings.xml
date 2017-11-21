@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/color_accent"
+        app:navigationIcon="@drawable/ic_back_embed"
+        app:popupTheme="@style/OverflowMenu"
+        app:theme="@style/Astolfo.Theme.TextAppearance.Toolbar"
+        app:title="@string/settings"
+        app:titleTextAppearance="@style/Astolfo.Theme.TextAppearance.Toolbar.Title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.arturia.astolfo.widget.menu.CategoryMenu
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:aliceCategory="分类" />
+
+            <com.arturia.astolfo.widget.menu.SwitchMenu
+                android:id="@+id/switch_subscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:aliceTitle="新番提醒"
+                app:aliceUnderline="true" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

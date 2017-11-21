@@ -9,4 +9,9 @@
     <dimen name="astolfo.text.xlarge">20sp</dimen>
 
     <dimen name="astolfo.line.spacing.normal">5dp</dimen>
+
+    <!--menu-->
+    <dimen name="menu_title_size">15sp</dimen>
+    <dimen name="menu_summary_size">10sp</dimen>
+    <dimen name="menu_category_size">12sp</dimen>
 </resources>
