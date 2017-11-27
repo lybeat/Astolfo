@@ -4,7 +4,7 @@
     <declare-styleable name="CategoryMenu">
         <attr name="aliceCategory" format="string|reference" />
     </declare-styleable>
-    <declare-styleable name="MenuItem">
+    <declare-styleable name="AliceMenuItem">
         <attr name="aliceTitle" format="string|reference" />
         <attr name="aliceSummary" format="string|reference" />
         <attr name="aliceState" format="string|reference" />

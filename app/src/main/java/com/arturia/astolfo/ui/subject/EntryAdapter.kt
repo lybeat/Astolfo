@@ -2,6 +2,7 @@ package com.arturia.astolfo.ui.subject
 
 import android.content.Context
 import android.widget.ImageView
+import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Entry
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions

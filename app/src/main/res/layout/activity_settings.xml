@@ -8,8 +8,9 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:background="@color/color_accent"
+        android:fitsSystemWindows="true"
         app:navigationIcon="@drawable/ic_back_embed"
         app:popupTheme="@style/OverflowMenu"
         app:theme="@style/Astolfo.Theme.TextAppearance.Toolbar"

@@ -52,7 +52,6 @@ public class CategoryMenu extends FrameLayout {
         inflate(getContext(), R.layout.menu_category, this);
         rootLayout = findViewById(R.id.root_layout);
         rootLayout.setBackgroundColor(ColorUtil.getColor(getContext(), R.color.white));
-        rootLayout.setBackgroundResource(R.drawable.bg_ripple);
         categoryTxt = findViewById(R.id.category_txt);
 
         setEnabled(true);

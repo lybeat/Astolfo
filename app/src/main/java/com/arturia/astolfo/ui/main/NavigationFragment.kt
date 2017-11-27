@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arturia.astolfo.R
 import com.arturia.astolfo.ui.base.BaseFragment
 import com.arturia.astolfo.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_navigation.*

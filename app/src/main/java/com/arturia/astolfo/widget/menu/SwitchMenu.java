@@ -42,17 +42,17 @@ public class SwitchMenu extends FrameLayout implements IMenu {
         boolean isChecked = false;
         boolean hasUnderline = false;
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MenuItem, defStyleAttr, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AliceMenuItem, defStyleAttr, 0);
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
-            if (attr == R.styleable.MenuItem_aliceTitle) {
+            if (attr == R.styleable.AliceMenuItem_aliceTitle) {
                 title = a.getString(attr);
-            } else if (attr == R.styleable.MenuItem_aliceSummary) {
+            } else if (attr == R.styleable.AliceMenuItem_aliceSummary) {
                 summary = a.getString(attr);
-            } else if (attr == R.styleable.MenuItem_aliceChecked) {
+            } else if (attr == R.styleable.AliceMenuItem_aliceChecked) {
                 isChecked = a.getBoolean(attr, false);
-            } else if (attr == R.styleable.MenuItem_aliceUnderline) {
+            } else if (attr == R.styleable.AliceMenuItem_aliceUnderline) {
                 hasUnderline = a.getBoolean(attr, false);
             }
         }

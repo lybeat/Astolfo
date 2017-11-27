@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.widget.Toast
+import com.arturia.astolfo.R
 import com.arturia.astolfo.ui.base.ImmersiveActivity
 import com.arturia.astolfo.ui.base.TabAdapter
 import com.arturia.astolfo.ui.browser.BrowserFragment

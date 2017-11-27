@@ -1,5 +1,6 @@
 package com.arturia.astolfo.ui.search
 
+import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.SearchHistory
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
