@@ -29,17 +29,36 @@
             android:orientation="vertical">
 
             <com.arturia.astolfo.widget.menu.CategoryMenu
-                android:id="@+id/category"
+                android:id="@+id/notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:aliceCategory="分类" />
+                app:aliceCategory="通知" />
 
             <com.arturia.astolfo.widget.menu.SwitchMenu
                 android:id="@+id/switch_subscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:aliceTitle="新番提醒"
+                app:aliceTitle="@string/anime_notification" />
+
+            <com.arturia.astolfo.widget.menu.CategoryMenu
+                android:id="@+id/help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:aliceCategory="帮助" />
+
+            <com.arturia.astolfo.widget.menu.BaseMenu
+                android:id="@+id/about_astolfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:aliceTitle="@string/about"
                 app:aliceUnderline="true" />
+
+            <com.arturia.astolfo.widget.menu.BaseMenu
+                android:id="@+id/license"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:aliceTitle="@string/license" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

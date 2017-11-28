@@ -45,5 +45,11 @@
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.settings.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.settings.LicenseActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

@@ -21,4 +21,12 @@
     <string name="anime_subscription">新番订阅</string>
     <string name="anime_favorite">番剧收藏</string>
     <string name="settings">设置</string>
+    <string name="notification">通知</string>
+    <string name="anime_notification">新番提醒</string>
+    <string name="help">帮助</string>
+    <string name="about">关于Astolfo</string>
+    <string name="license">开源许可证</string>
+
+    <string name="astolfo_domain">Astolfo主页：arturia.cc</string>
+    <string name="astolfo_developer">开发者：Arturia</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.arturia.astolfo.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
 import com.arturia.astolfo.R
 import com.arturia.astolfo.ui.base.SwipeActivity
@@ -16,5 +17,7 @@ class SettingsActivity : SwipeActivity() {
         setContentView(R.layout.activity_settings)
 
         toolbar.setNavigationOnClickListener { finish() }
+        about_astolfo.setOnClickListener { startActivity(Intent(this, AboutActivity::class.java)) }
+        license.setOnClickListener { startActivity(Intent(this, LicenseActivity::class.java)) }
     }
 }
