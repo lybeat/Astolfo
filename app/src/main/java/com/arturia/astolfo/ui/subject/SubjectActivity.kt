@@ -55,6 +55,9 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
         }
 
         scroll_view.setOnScrollChangedListener(this)
+
+        tv_favorite.setOnClickListener {  }
+        tv_subscription.setOnClickListener {  }
     }
 
     override fun onDestroy() {
@@ -98,6 +101,7 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
             tv_summary.text = subject.summary
             tv_summary.visibility = View.VISIBLE
             layout_more_info.visibility = View.VISIBLE
+            layout_action.visibility = View.VISIBLE
             tv_more_info.setOnClickListener {
                 if (subject.info != null && subject.info != "") {
                     SubjectInfoActivity.launch(this, subject.name, subject.summary, subject.info)
@@ -107,7 +111,7 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
         if (subject.characters!!.isNotEmpty()) {
             recycler_character.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
             val characterAdapter = CharacterAdapter(this, subject.characters!!)
-            characterAdapter.setOnItemClickListener { adapter, view, position ->
+            characterAdapter.setOnItemClickListener { adapter, _, position ->
                 val character: Character = adapter.data[position] as Character
                 CharacterActivity.launch(this, character.href)
             }

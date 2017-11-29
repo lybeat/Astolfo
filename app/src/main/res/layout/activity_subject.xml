@@ -154,6 +154,36 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_action"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_favorite_disable"
+                    android:gravity="center_vertical"
+                    android:text="@string/favorite" />
+
+                <TextView
+                    android:id="@+id/tv_subscription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_subscription_disable"
+                    android:gravity="center_vertical"
+                    android:text="@string/subscription" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layout_character"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
