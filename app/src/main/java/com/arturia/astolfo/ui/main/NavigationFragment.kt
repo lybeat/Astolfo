@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.arturia.astolfo.R
 import com.arturia.astolfo.ui.base.BaseFragment
+import com.arturia.astolfo.ui.favorite.FavoriteActivity
 import com.arturia.astolfo.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_navigation.*
 
@@ -22,6 +23,7 @@ class NavigationFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        settings_layout.setOnClickListener { startActivity(Intent(context, SettingsActivity::class.java)) }
+        layout_favorite.setOnClickListener { startActivity(Intent(activity, FavoriteActivity::class.java)) }
+        layout_settings.setOnClickListener { startActivity(Intent(activity, SettingsActivity::class.java)) }
     }
 }

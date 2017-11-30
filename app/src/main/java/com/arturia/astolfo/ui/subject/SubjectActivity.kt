@@ -9,6 +9,7 @@ import com.arturia.astolfo.GlideApp
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Character
 import com.arturia.astolfo.data.model.Entry
+import com.arturia.astolfo.data.model.Favorite
 import com.arturia.astolfo.data.model.Subject
 import com.arturia.astolfo.ui.base.SwipeActivity
 import com.arturia.astolfo.ui.character.CharacterActivity
@@ -17,8 +18,9 @@ import com.arturia.astolfo.ui.comment.CommentAdapter
 import com.arturia.astolfo.util.BlurTransformation
 import com.arturia.astolfo.widget.LittleLayoutManager
 import com.arturia.astolfo.widget.ObservableScrollView
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_subject.*
-
+import kotlin.properties.Delegates
 
 
 /**
@@ -27,7 +29,10 @@ import kotlinx.android.synthetic.main.activity_subject.*
  */
 class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollView.ScrollViewListener {
 
+    private var realm: Realm by Delegates.notNull()
+
     private lateinit var presenter: SubjectContract.Presenter
+    private lateinit var subject: Subject
     private var number = ""
 
     companion object {
@@ -41,6 +46,8 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subject)
+
+        realm = Realm.getDefaultInstance()
 
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener({ finish() })
@@ -56,13 +63,44 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
 
         scroll_view.setOnScrollChangedListener(this)
 
-        tv_favorite.setOnClickListener {  }
-        tv_subscription.setOnClickListener {  }
+        val result = realm.where(Favorite::class.java).equalTo("href", href).findFirst()
+        if (result == null) {
+            iv_favorite.setImageResource(R.drawable.ic_favorite_disable)
+            tv_favorite.text = "收藏"
+        } else {
+            iv_favorite.setImageResource(R.drawable.ic_favorite_able)
+            tv_favorite.text = "已收藏"
+        }
+        layout_favorite.setOnClickListener {
+            toggleFavorite(href)
+        }
+        layout_subscription.setOnClickListener { }
+    }
+
+    private fun toggleFavorite(href: String?) {
+        val res = realm.where(Favorite::class.java).equalTo("href", href).findFirst()
+        if (res == null) {
+            iv_favorite.setImageResource(R.drawable.ic_favorite_able)
+            tv_favorite.text = "已收藏"
+            val favorite = Favorite()
+            favorite.href = href
+            favorite.name = subject.name
+            favorite.cover = subject.cover
+            favorite.info = subject.info
+            favorite.star = subject.star
+            favorite.time = System.currentTimeMillis()
+            realm.executeTransaction { realm.copyToRealmOrUpdate(favorite) }
+        } else {
+            iv_favorite.setImageResource(R.drawable.ic_favorite_disable)
+            tv_favorite.text = "收藏"
+            realm.executeTransaction { res.deleteFromRealm() }
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.unsubscribe()
+        realm.close()
     }
 
     override fun setPresenter(presenter: SubjectContract.Presenter) {
@@ -79,6 +117,8 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
     }
 
     override fun onSubjectLoaded(subject: Subject) {
+        this.subject = subject
+
         toolbar.title = subject.name
         header_layout.visibility = View.VISIBLE
         GlideApp.with(this)

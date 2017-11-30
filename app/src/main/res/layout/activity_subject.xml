@@ -163,24 +163,53 @@
                 android:orientation="horizontal"
                 android:visibility="gone">
 
-                <TextView
-                    android:id="@+id/tv_favorite"
+                <LinearLayout
+                    android:id="@+id/layout_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_favorite_disable"
                     android:gravity="center_vertical"
-                    android:text="@string/favorite" />
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
 
-                <TextView
-                    android:id="@+id/tv_subscription"
+                    <ImageView
+                        android:id="@+id/iv_favorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:id="@+id/tv_favorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/favorite" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_subscription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_subscription_disable"
                     android:gravity="center_vertical"
-                    android:text="@string/subscription" />
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:id="@+id/iv_subscription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:id="@+id/tv_subscription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/subscription" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout

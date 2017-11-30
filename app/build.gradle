@@ -2,8 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 26
@@ -21,12 +20,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-greendao {
-    schemaVersion 1
-    daoPackage 'com.arturia.astolfo.data.greendao'
-    targetGenDir 'src/main/java'
 }
 
 dependencies {
@@ -69,8 +62,6 @@ dependencies {
 
     // 3dTagCloudAndroid
     implementation 'com.moxun:tagcloudlib:1.2.0'
-
-    compile 'org.greenrobot:greendao:3.2.2'
 }
 repositories {
     mavenCentral()

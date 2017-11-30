@@ -43,6 +43,9 @@
             android:name=".ui.search.SearchResultActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.favorite.FavoriteActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity

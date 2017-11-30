@@ -1,6 +1,7 @@
 package com.arturia.astolfo
 
 import android.app.Application
+import io.realm.Realm
 
 /**
  * Author: Arturia
@@ -12,6 +13,8 @@ class AstolfoApplication : Application() {
         super.onCreate()
 
         application = this
+
+        Realm.init(this)
     }
 
     companion object {
