@@ -46,6 +46,9 @@
             android:name=".ui.favorite.FavoriteActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.subscription.SubscriptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity

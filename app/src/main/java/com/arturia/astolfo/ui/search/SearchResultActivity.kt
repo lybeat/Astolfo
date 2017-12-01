@@ -9,7 +9,7 @@ import com.arturia.astolfo.data.model.Anime
 import com.arturia.astolfo.ui.base.SwipeActivity
 import com.arturia.astolfo.ui.browser.BrowserAdapter
 import com.arturia.astolfo.ui.subject.SubjectActivity
-import kotlinx.android.synthetic.main.activity_comment.*
+import kotlinx.android.synthetic.main.activity_common.*
 
 /**
  * Author: Arturia
@@ -33,7 +33,7 @@ class SearchResultActivity : SwipeActivity(), SearchContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_comment)
+        setContentView(R.layout.activity_common)
 
         name = intent.getStringExtra("name")
 

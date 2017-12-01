@@ -11,13 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Calendar
+import com.arturia.astolfo.data.model.Subscription
 import com.arturia.astolfo.ui.base.BaseFragment
 import com.arturia.astolfo.ui.base.TabAdapter
 import com.arturia.astolfo.ui.main.FragmentListener
 import com.arturia.astolfo.ui.search.SearchActivity
 import com.arturia.astolfo.util.DateUtil
+import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_pager_calendar.*
 import java.util.*
+import kotlin.properties.Delegates
 
 /**
  * Author: Arturia
@@ -31,11 +34,15 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnM
     private var titles = mutableListOf<String>()
     private var pagePosition = 0
 
+    private var realm: Realm by Delegates.notNull()
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater?.inflate(R.layout.fragment_pager_calendar, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        realm = Realm.getDefaultInstance()
 
         toolbar.inflateMenu(R.menu.menu_main)
         toolbar.setNavigationIcon(R.drawable.ic_menu)
@@ -106,6 +113,23 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnM
         tab_layout.setupWithViewPager(view_pager)
         tab_layout.tabMode = TabLayout.MODE_FIXED
         view_pager.currentItem = pagePosition
+
+        val result = realm.where(Subscription::class.java).findAll()
+        val todayCalender = getCalendarList(calendar, DateUtil.getWeekWithDate(Date()))
+        var count = 0
+        if (result != null && calendar != null) {
+            for (r in result) {
+                todayCalender
+                        .filter { r.href == it.href }
+                        .forEach {
+                            r.time = System.currentTimeMillis()
+                            realm.executeTransaction {
+                                count++
+                                realm.copyToRealmOrUpdate(r)
+                            }
+                        }
+            }
+        }
     }
 
     private fun initFragments(calendar: List<Calendar>?) {

@@ -7,10 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.arturia.astolfo.GlideApp
 import com.arturia.astolfo.R
-import com.arturia.astolfo.data.model.Character
-import com.arturia.astolfo.data.model.Entry
-import com.arturia.astolfo.data.model.Favorite
-import com.arturia.astolfo.data.model.Subject
+import com.arturia.astolfo.data.model.*
 import com.arturia.astolfo.ui.base.SwipeActivity
 import com.arturia.astolfo.ui.character.CharacterActivity
 import com.arturia.astolfo.ui.comment.CommentActivity
@@ -71,15 +68,13 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
             iv_favorite.setImageResource(R.drawable.ic_favorite_able)
             tv_favorite.text = "已收藏"
         }
-        layout_favorite.setOnClickListener {
-            toggleFavorite(href)
-        }
-        layout_subscription.setOnClickListener { }
+        layout_favorite.setOnClickListener { toggleFavorite(href) }
+        layout_subscription.setOnClickListener { toggleSubscription(href) }
     }
 
     private fun toggleFavorite(href: String?) {
-        val res = realm.where(Favorite::class.java).equalTo("href", href).findFirst()
-        if (res == null) {
+        val result = realm.where(Favorite::class.java).equalTo("href", href).findFirst()
+        if (result == null) {
             iv_favorite.setImageResource(R.drawable.ic_favorite_able)
             tv_favorite.text = "已收藏"
             val favorite = Favorite()
@@ -93,7 +88,27 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
         } else {
             iv_favorite.setImageResource(R.drawable.ic_favorite_disable)
             tv_favorite.text = "收藏"
-            realm.executeTransaction { res.deleteFromRealm() }
+            realm.executeTransaction { result.deleteFromRealm() }
+        }
+    }
+
+    private fun toggleSubscription(href: String?) {
+        val result = realm.where(Subscription::class.java).equalTo("href", href).findFirst()
+        if (result == null) {
+            iv_subscription.setImageResource(R.drawable.ic_subscription_able)
+            tv_subscription.text = "已订阅"
+            val subscription = Subscription()
+            subscription.href = href
+            subscription.name = subject.name
+            subscription.cover = subject.cover
+            subscription.info = subject.info
+            subscription.star = subject.star
+            subscription.time = System.currentTimeMillis()
+            realm.executeTransaction { realm.copyToRealmOrUpdate(subscription) }
+        } else {
+            iv_subscription.setImageResource(R.drawable.ic_subscription_disable)
+            tv_subscription.text = "订阅"
+            realm.executeTransaction { result.deleteFromRealm() }
         }
     }
 
