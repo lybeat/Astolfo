@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -12,6 +13,8 @@ import android.view.ViewGroup
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Calendar
 import com.arturia.astolfo.data.model.Subscription
+import com.arturia.astolfo.event.RxBus
+import com.arturia.astolfo.event.SubscriptionEvent
 import com.arturia.astolfo.ui.base.BaseFragment
 import com.arturia.astolfo.ui.base.TabAdapter
 import com.arturia.astolfo.ui.main.FragmentListener
@@ -114,21 +117,30 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnM
         tab_layout.tabMode = TabLayout.MODE_FIXED
         view_pager.currentItem = pagePosition
 
+        val week = arrayOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
         val result = realm.where(Subscription::class.java).findAll()
-        val todayCalender = getCalendarList(calendar, DateUtil.getWeekWithDate(Date()))
+        val todayCalender = getCalendarList(calendar, week[pagePosition])
         var count = 0
         if (result != null && calendar != null) {
             for (r in result) {
                 todayCalender
                         .filter { r.href == it.href }
                         .forEach {
-                            r.time = System.currentTimeMillis()
-                            realm.executeTransaction {
-                                count++
-                                realm.copyToRealmOrUpdate(r)
-                            }
+                            count++
+                            val subscription = Subscription()
+                            subscription.href = r.href
+                            subscription.name = r.name
+                            subscription.cover = r.cover
+                            subscription.info = r.info
+                            subscription.star = r.star
+                            subscription.time = System.currentTimeMillis()
+                            realm.executeTransaction { realm.copyToRealmOrUpdate(r) }
                         }
             }
+        }
+        Log.i("CalendarPagerFragment", "@@@count: " + count)
+        if (count > 0) {
+            RxBus.get().post(SubscriptionEvent(count))
         }
     }
 
