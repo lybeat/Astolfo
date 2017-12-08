@@ -33,16 +33,18 @@ class NavigationFragment : BaseFragment() {
         layout_settings.setOnClickListener { startActivity(Intent(activity, SettingsActivity::class.java)) }
     }
 
-    override fun subscribeEvents(): rx.Subscription? =
-            RxBus.get().toObservable()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnNext({
-                        Log.i("NavigationFragment", "@@@subscribeEvents")
-                        if (it is SubscriptionEvent) {
-                            updateSubscription(it.count)
-                        }
-                    })
-                    .subscribe(RxBus.defaultSubscriber())
+    override fun subscribeEvents(): rx.Subscription? {
+        return RxBus.get()
+                .toObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext({
+                    Log.i("NavigationFragment", "@@@subscribeEvents")
+                    if (it is SubscriptionEvent) {
+                        updateSubscription(it.count)
+                    }
+                })
+                .subscribe(RxBus.defaultSubscriber())
+    }
 
     private fun updateSubscription(count: Int) {
         tv_update_count.text = count.toString()

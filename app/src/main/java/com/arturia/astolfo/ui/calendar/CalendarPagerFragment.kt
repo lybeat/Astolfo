@@ -124,7 +124,8 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnM
         if (result != null && calendar != null) {
             for (r in result) {
                 todayCalender
-                        .filter { r.href == it.href }
+                        .filter {
+                            r.href == it.href }
                         .forEach {
                             count++
                             val subscription = Subscription()

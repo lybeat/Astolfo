@@ -60,13 +60,21 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
 
         scroll_view.setOnScrollChangedListener(this)
 
-        val result = realm.where(Favorite::class.java).equalTo("href", href).findFirst()
-        if (result == null) {
+        val favorite = realm.where(Favorite::class.java).equalTo("href", href).findFirst()
+        if (favorite == null) {
             iv_favorite.setImageResource(R.drawable.ic_favorite_disable)
             tv_favorite.text = "收藏"
         } else {
             iv_favorite.setImageResource(R.drawable.ic_favorite_able)
             tv_favorite.text = "已收藏"
+        }
+        val subscription = realm.where(Subscription::class.java).equalTo("href", href).findFirst();
+        if (subscription == null) {
+            iv_subscription.setImageResource(R.drawable.ic_subscription_disable)
+            tv_subscription.text = "订阅"
+        } else {
+            iv_subscription.setImageResource(R.drawable.ic_subscription_able)
+            tv_subscription.text = "已订阅"
         }
         layout_favorite.setOnClickListener { toggleFavorite(href) }
         layout_subscription.setOnClickListener { toggleSubscription(href) }
