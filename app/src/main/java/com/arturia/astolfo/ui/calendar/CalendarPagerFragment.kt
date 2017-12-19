@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -13,6 +12,7 @@ import android.view.ViewGroup
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Calendar
 import com.arturia.astolfo.data.model.Subscription
+import com.arturia.astolfo.data.sp.SpSubscription
 import com.arturia.astolfo.event.RxBus
 import com.arturia.astolfo.event.SubscriptionEvent
 import com.arturia.astolfo.ui.base.BaseFragment
@@ -139,8 +139,7 @@ class CalendarPagerFragment : BaseFragment(), CalendarContract.View, Toolbar.OnM
                         }
             }
         }
-        Log.i("CalendarPagerFragment", "@@@count: " + count)
-        if (count > 0) {
+        if (count > 0 && SpSubscription.getSubscription(activity)) {
             RxBus.get().post(SubscriptionEvent(count))
         }
     }

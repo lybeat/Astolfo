@@ -2,7 +2,6 @@ package com.arturia.astolfo.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +37,6 @@ class NavigationFragment : BaseFragment() {
                 .toObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext({
-                    Log.i("NavigationFragment", "@@@subscribeEvents")
                     if (it is SubscriptionEvent) {
                         updateSubscription(it.count)
                     }
@@ -47,6 +45,7 @@ class NavigationFragment : BaseFragment() {
     }
 
     private fun updateSubscription(count: Int) {
+        tv_update_count.visibility = View.VISIBLE
         tv_update_count.text = count.toString()
     }
 }

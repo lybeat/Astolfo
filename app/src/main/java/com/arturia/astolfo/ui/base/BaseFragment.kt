@@ -2,9 +2,6 @@ package com.arturia.astolfo.ui.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
 
@@ -16,14 +13,13 @@ abstract class BaseFragment : Fragment() {
 
     private var compositeSubscription: CompositeSubscription? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         addSubscription(subscribeEvents())
-
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         compositeSubscription?.clear()
     }
 

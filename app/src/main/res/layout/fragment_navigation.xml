@@ -42,7 +42,13 @@
                 <TextView
                     android:id="@+id/tv_update_count"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_red_point"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/astolfo.text.small"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
