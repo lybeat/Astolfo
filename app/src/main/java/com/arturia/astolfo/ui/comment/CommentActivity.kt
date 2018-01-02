@@ -1,13 +1,17 @@
 package com.arturia.astolfo.ui.comment
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.Comment
 import com.arturia.astolfo.ui.base.SwipeActivity
 import kotlinx.android.synthetic.main.activity_common.*
+
 
 /**
  * Author: Arturia
@@ -46,11 +50,19 @@ class CommentActivity : SwipeActivity(), CommentContract.View {
         }, recycler_view)
         adapter.setOnItemClickListener { adapter, _, position ->
             val comment: Comment = adapter.data[position] as Comment
+            copy(comment)
         }
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = adapter
 
         CommentPresenter(this).loadComment(number, "1")
+    }
+
+    private fun copy(comment: Comment) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("text", comment.content)
+        clipboard.primaryClip = clip
+        Toast.makeText(this, "已复制" + comment.user?.name + "的评论", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

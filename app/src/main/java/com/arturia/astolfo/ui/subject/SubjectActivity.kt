@@ -1,10 +1,13 @@
 package com.arturia.astolfo.ui.subject
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.Toast
 import com.arturia.astolfo.GlideApp
 import com.arturia.astolfo.R
 import com.arturia.astolfo.data.model.*
@@ -203,10 +206,22 @@ class SubjectActivity : SwipeActivity(), SubjectContract.View, ObservableScrollV
         }
         if (subject.comments!!.isNotEmpty()) {
             recycler_comment.layoutManager = LittleLayoutManager(this)
-            recycler_comment.adapter = CommentAdapter(this, subject.comments!!)
+            val commentAdapter = CommentAdapter(this, subject.comments!!)
+            commentAdapter.setOnItemClickListener { adapter, _, position ->
+                val comment: Comment = adapter.data[position] as Comment
+                copy(comment)
+            }
+            recycler_comment.adapter = commentAdapter
             layout_comment.visibility = View.VISIBLE
             tv_more_comment.setOnClickListener { CommentActivity.launch(this, number) }
         }
+    }
+
+    private fun copy(comment: Comment) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("text", comment.content)
+        clipboard.primaryClip = clip
+        Toast.makeText(this, "已复制" + comment.user?.name + "的评论", Toast.LENGTH_SHORT).show()
     }
 
     override fun onScrollChanged(view: ObservableScrollView, x: Int, y: Int, oldX: Int, oldY: Int) {
