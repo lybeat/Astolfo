@@ -25,8 +25,8 @@ class SubscriptionActivity : SwipeActivity() {
 
         realm = Realm.getDefaultInstance()
 
-        setSupportActionBar(toolbar)
         toolbar.title = getString(R.string.anime_subscription)
+        setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener { finish() }
 
         val result = realm.where(Subscription::class.java).findAll()

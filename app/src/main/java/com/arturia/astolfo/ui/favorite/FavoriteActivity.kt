@@ -25,8 +25,8 @@ class FavoriteActivity : SwipeActivity() {
 
         realm = Realm.getDefaultInstance()
 
-        setSupportActionBar(toolbar)
         toolbar.title = getString(R.string.anime_favorite)
+        setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener { finish() }
 
         val result = realm.where(Favorite::class.java).findAll()
